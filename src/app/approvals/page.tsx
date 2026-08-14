@@ -29,7 +29,7 @@ export default function ApprovalsPage() {
         <p className="text-sm text-slate-300 mt-1">Review and approve high-risk autonomous AI actions before execution.</p>
       </header>
 
-      <div className="flex-1 overflow-y-auto p-4 md:p-8">
+      <div className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar">
         {loading ? (
           <p className="text-slate-300">Loading queue...</p>
         ) : queue.length === 0 ? (

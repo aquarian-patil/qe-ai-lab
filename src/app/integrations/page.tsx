@@ -55,7 +55,7 @@ export default function IntegrationsPage() {
   );
 
   return (
-    <div className="m-4 flex flex-col relative glass-panel mb-8">
+    <div className="m-0 md:m-4 flex flex-col relative glass-panel mb-8 !border-0 md:!border !rounded-none md:!rounded-2xl">
       <header className="px-4 md:px-8 py-6 border-b border-slate-200 bg-white/50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shrink-0">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-3">

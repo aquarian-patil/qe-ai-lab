@@ -31,11 +31,11 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="m-4 flex flex-col gap-6 relative pb-8">
+    <div className="m-0 md:m-4 p-4 md:p-0 flex flex-col gap-6 relative pb-8">
       <header className="px-8 py-6 glass-panel flex flex-col md:flex-row md:justify-between items-start md:items-center gap-4 relative overflow-hidden shrink-0">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10" />
         <div className="relative z-10">
-          <h2 className="text-3xl font-black text-slate-900 tracking-tight">Executive Command Center</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight leading-tight">Executive Command Center</h2>
           <p className="text-sm text-slate-800 mt-1">Holistic DevSecOps Maturity & Autonomous Ecosystem Status</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full md:w-auto">
@@ -51,7 +51,7 @@ export default function Dashboard() {
       <div className="flex flex-col lg:flex-row gap-6 lg:h-[400px] shrink-0">
         {/* Trend Graph */}
         <div className="flex-1 glass-panel p-6 flex flex-col h-[300px] lg:h-auto">
-          <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <h3 className="text-base md:text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
             <svg className="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
             6-Month Maturity Trend
           </h3>
@@ -82,7 +82,7 @@ export default function Dashboard() {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-violet-500/20 group-hover:scale-110 transition-transform duration-700" />
           <div className="relative z-10 text-center">
             <p className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-2">Current Maturity</p>
-            <h1 className="text-7xl font-black text-slate-900 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] mb-2">
+            <h1 className="text-5xl md:text-7xl font-black text-slate-900 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] mb-2">
               L{data.maturityLevel.toFixed(1)}
             </h1>
             <p className="text-blue-400 font-bold uppercase tracking-widest text-xs">Autonomous Execution</p>
@@ -98,7 +98,7 @@ export default function Dashboard() {
       </div>
 
       <div className="mt-6 glass-panel p-6 shrink-0">
-        <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+        <h3 className="text-base md:text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
           <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
           DevSecOps Autonomous Maturity Matrix
         </h3>

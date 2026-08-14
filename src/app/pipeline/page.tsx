@@ -97,7 +97,7 @@ export default function PipelineViewer() {
   };
 
   return (
-    <div className="h-full m-4 flex flex-col relative overflow-y-auto lg:overflow-hidden glass-panel">
+    <div className="h-full m-0 md:m-4 flex flex-col relative overflow-y-auto lg:overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
       
       <header className="px-8 py-6 border-b border-slate-300 flex justify-between items-center bg-slate-50 shrink-0">
         <div>

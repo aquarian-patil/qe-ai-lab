@@ -9,12 +9,12 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
-      {/* Background Glows */}
-      <div className="bg-glow-purple top-[-100px] left-[-100px] absolute z-0" />
-      <div className="bg-glow-cyan bottom-[-100px] right-[-100px] absolute z-0" />
+      {/* Background Glows (Hidden on Mobile) */}
+      <div className="hidden md:block bg-glow-purple top-[-100px] left-[-100px] absolute z-0" />
+      <div className="hidden md:block bg-glow-cyan bottom-[-100px] right-[-100px] absolute z-0" />
 
       {/* Global Executive Header */}
-      <header className="h-16 glass-panel mx-4 mt-4 px-6 flex justify-between items-center z-30 relative shrink-0">
+      <header className="h-16 glass-panel mx-0 mt-0 md:mx-4 md:mt-4 !rounded-none md:!rounded-2xl !border-x-0 !border-t-0 md:!border-x md:!border-t px-4 md:px-6 flex justify-between items-center z-30 relative shrink-0">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
           <div className="relative w-9 h-9 rounded-xl bg-white/90 border border-blue-500/50 flex items-center justify-center overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.3)] group">
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-violet-500/20 group-hover:scale-110 transition-transform duration-500" />

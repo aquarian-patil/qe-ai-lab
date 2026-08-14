@@ -89,8 +89,8 @@ export default function AgenticAiEvaluator() {
   };
 
   return (
-    <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
-      <header className="px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center">
+    <div className="h-full m-0 md:m-4 flex flex-col relative overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
+      <header className="px-4 md:px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center w-full">
         <div>
           <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-3">
             <svg className="w-6 h-6 text-fuchsia-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
@@ -100,10 +100,10 @@ export default function AgenticAiEvaluator() {
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-950/50">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto lg:overflow-hidden bg-slate-950/50 min-w-0 w-full">
         
         {/* Left Side: Environment Setup */}
-        <div className="lg:w-[55%] flex flex-col relative h-full">
+        <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full min-w-0">
           <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-6 flex flex-col">
             <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">Swarm Configuration</h3>
             
@@ -161,7 +161,7 @@ export default function AgenticAiEvaluator() {
         </div>
 
         {/* Right Side: Swarm Chat Stream */}
-        <div className="lg:w-[45%] border border-slate-800 rounded-xl bg-slate-950 shadow-2xl p-6 flex flex-col relative h-full">
+        <div className="w-full lg:w-[45%] border border-slate-800 rounded-xl bg-slate-950 shadow-2xl p-6 flex flex-col relative shrink-0 lg:h-full min-h-[400px] min-w-0">
           <div className="flex justify-between items-center mb-4 border-b border-slate-800 pb-4 shrink-0">
             <div className="flex gap-2">
               <div className="w-3 h-3 rounded-full bg-red-500/80"></div>

@@ -95,8 +95,8 @@ export default function AiAgentEvaluator() {
   };
 
   return (
-    <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
-      <header className="px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center">
+    <div className="h-full m-0 md:m-4 flex flex-col relative overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
+      <header className="px-4 md:px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center w-full">
         <div>
           <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-3">
             <svg className="w-6 h-6 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" /></svg>
@@ -106,10 +106,10 @@ export default function AiAgentEvaluator() {
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-950/50">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto lg:overflow-hidden bg-slate-950/50 min-w-0 w-full">
         
         {/* Left Side: Environment Setup */}
-        <div className="lg:w-[55%] flex flex-col relative h-full">
+        <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full min-w-0">
           <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-6 flex flex-col">
             <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">Evaluation Environment</h3>
             
@@ -167,7 +167,7 @@ export default function AiAgentEvaluator() {
         </div>
 
         {/* Right Side: Trajectory Terminal */}
-        <div className="lg:w-[45%] border border-slate-800 rounded-xl bg-slate-950 shadow-2xl p-6 flex flex-col relative h-full">
+        <div className="w-full lg:w-[45%] border border-slate-800 rounded-xl bg-slate-950 shadow-2xl p-6 flex flex-col relative shrink-0 lg:h-full min-h-[400px] min-w-0">
           <div className="flex gap-2 mb-4 border-b border-slate-800 pb-4 shrink-0">
             <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>

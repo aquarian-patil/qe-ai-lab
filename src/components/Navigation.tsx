@@ -14,7 +14,7 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
       <div className="hidden md:block bg-glow-cyan bottom-[-100px] right-[-100px] absolute z-0" />
 
       {/* Global Executive Header */}
-      <header className="h-16 glass-panel mx-0 mt-0 md:mx-4 md:mt-4 !rounded-none md:!rounded-2xl !border-x-0 !border-t-0 md:!border-x md:!border-t px-4 md:px-6 flex justify-between items-center z-30 relative shrink-0">
+      <header className="h-16 glass-panel mx-0 mt-0 md:mx-4 md:mt-4 !rounded-none md:!rounded-2xl !border-x-0 !border-t-0 md:!border-x md:!border-t px-4 flex justify-between items-center z-30 relative shrink-0">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer">
           <div className="relative w-9 h-9 rounded-xl bg-slate-900/90 border border-blue-500/50 flex items-center justify-center overflow-hidden shadow-[0_0_20px_rgba(6,182,212,0.3)] group">
             <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/20 to-violet-500/20 group-hover:scale-110 transition-transform duration-500" />
@@ -84,6 +84,32 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
           <button onClick={() => setMobileMenuOpen(false)} className="p-1 hover:bg-slate-200 rounded-full text-slate-400">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
           </button>
+        </div>
+        
+        {/* Mobile Header Elements */}
+        <div className="md:hidden flex flex-col gap-4 mb-6 pb-6 border-b border-slate-700">
+          <ComingSoon>
+            <input type="text" placeholder="Search tests, agents..." className="bg-slate-950 border border-slate-700 rounded-full px-4 py-2 text-sm text-white placeholder-slate-500 w-full focus:outline-none focus:border-violet-500 transition-colors pointer-events-none" />
+          </ComingSoon>
+          <div className="flex justify-between items-center px-2">
+            <ComingSoon>
+              <button className="relative text-slate-300 hover:text-blue-600 transition-colors flex items-center gap-2 text-sm font-medium">
+                <div className="relative">
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /></svg>
+                  <span className="absolute top-0 right-0 w-2 h-2 bg-rose-500 rounded-full animate-pulse"></span>
+                </div>
+                Alerts
+              </button>
+            </ComingSoon>
+            <ComingSoon>
+              <div className="flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity">
+                <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 overflow-hidden">
+                   <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=CEO" alt="Profile" />
+                </div>
+                <span className="text-sm text-slate-300 font-medium">Profile</span>
+              </div>
+            </ComingSoon>
+          </div>
         </div>
         
         <p className="text-[10px] text-slate-300 uppercase tracking-widest font-bold mb-3 mt-2 px-4">Command Center</p>

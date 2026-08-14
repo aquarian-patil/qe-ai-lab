@@ -75,10 +75,10 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 shrink-0">
-        <MaturityCard title="Code Quality" score={data.codeQuality.score} icon="💻" color="from-blue-500/20 to-blue-600/20" borderColor="border-blue-500/30" textColor="text-blue-400" />
-        <MaturityCard title="Agentic Testing" score={data.agenticTesting.score} icon="🤖" color="from-violet-500/20 to-violet-600/20" borderColor="border-violet-500/30" textColor="text-violet-400" />
-        <MaturityCard title="CI/CD Velocity" score={data.cicd.score} icon="🚀" color="from-rose-500/20 to-rose-600/20" borderColor="border-rose-500/30" textColor="text-rose-400" />
-        <MaturityCard title="Security & NFR" score={data.securityNfr.score} icon="🛡️" color="from-orange-500/20 to-orange-600/20" borderColor="border-orange-500/30" textColor="text-orange-400" />
+        <MaturityCard title="Code Quality" score={data.codeQuality.score} icon="💻" color="from-blue-500/20 to-blue-600/20" borderColor="border-blue-500/30" textColor="text-blue-400" barColor="bg-blue-400" />
+        <MaturityCard title="Agentic Testing" score={data.agenticTesting.score} icon="🤖" color="from-violet-500/20 to-violet-600/20" borderColor="border-violet-500/30" textColor="text-violet-400" barColor="bg-violet-400" />
+        <MaturityCard title="CI/CD Velocity" score={data.cicd.score} icon="🚀" color="from-rose-500/20 to-rose-600/20" borderColor="border-rose-500/30" textColor="text-rose-400" barColor="bg-rose-400" />
+        <MaturityCard title="Security & NFR" score={data.securityNfr.score} icon="🛡️" color="from-orange-500/20 to-orange-600/20" borderColor="border-orange-500/30" textColor="text-orange-400" barColor="bg-orange-400" />
       </div>
 
 
@@ -118,7 +118,7 @@ export default function Dashboard() {
   );
 }
 
-function MaturityCard({ title, score, icon, color, borderColor, textColor }: any) {
+function MaturityCard({ title, score, icon, color, borderColor, textColor, barColor }: any) {
   const scaledScore = score / 20;
   return (
     <div className={`p-6 rounded-2xl border ${borderColor} bg-gradient-to-br ${color} backdrop-blur-xl relative overflow-hidden group hover:scale-[1.02] transition-transform`}>
@@ -132,7 +132,7 @@ function MaturityCard({ title, score, icon, color, borderColor, textColor }: any
       
       <div className="mt-6 w-full h-2 bg-slate-900/90 rounded-full overflow-hidden relative z-10">
         <div 
-          className={`h-full ${textColor.replace('text-', 'bg-')} transition-all duration-1000 ease-out`}
+          className={`h-full ${barColor} transition-all duration-1000 ease-out`}
           style={{ width: `${(scaledScore / 5) * 100}%` }}
         />
       </div>

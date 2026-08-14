@@ -116,7 +116,7 @@ export default function PipelineViewer() {
         </button>
       </header>
 
-      <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto lg:overflow-hidden pb-8 lg:pb-0 min-w-0 w-full">
+      <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto lg:overflow-hidden min-w-0 w-full">
         
         {/* Left Side: DAG Visualizer */}
         <div className="w-full xl:w-[60%] h-[250px] sm:h-[300px] xl:h-auto xl:min-h-[400px] p-0 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-700 relative bg-slate-950 overflow-hidden shrink-0 flex items-start xl:items-center justify-center min-w-0">

@@ -36,9 +36,9 @@ export default function RootLayout({
             </h1>
           </Link>
           
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
             <ComingSoon>
-              <div className="relative">
+              <div className="relative hidden md:block">
                 <input type="text" placeholder="Search tests, agents..." className="bg-slate-50 border border-slate-300 rounded-full px-4 py-1.5 text-sm text-slate-900 placeholder-slate-500 w-64 focus:outline-none focus:border-violet-500 transition-colors pointer-events-none" />
               </div>
             </ComingSoon>
@@ -56,9 +56,9 @@ export default function RootLayout({
           </div>
         </header>
 
-        <div className="flex flex-1 overflow-hidden">
+        <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
           {/* Sidebar */}
-          <aside className="w-64 glass-panel m-4 mt-2 flex flex-col p-4 z-10 overflow-y-auto">
+          <aside className="w-full md:w-64 shrink-0 glass-panel md:m-4 md:mt-2 flex flex-col p-4 z-10 overflow-y-auto border-b md:border-b-0 md:border-r border-slate-200">
             
             <p className="text-[10px] text-slate-800 uppercase tracking-widest font-bold mb-3 mt-2 px-4">Command Center</p>
             <nav className="space-y-1">

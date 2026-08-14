@@ -55,14 +55,14 @@ export default function IntegrationsPage() {
   );
 
   return (
-    <div className="m-0 md:m-4 flex flex-col relative glass-panel mb-8 !border-0 md:!border !rounded-none md:!rounded-2xl">
+    <div className="flex flex-col relative glass-panel mb-8 !border-0 md:!border !rounded-none md:!rounded-2xl overflow-y-auto">
       <header className="px-4 md:px-8 py-6 border-b border-slate-700 bg-slate-950/50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shrink-0">
         <div>
-          <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-3">
-            <svg className="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+          <h2 className="text-xl md:text-2xl font-bold text-white tracking-wide flex items-center gap-2 md:gap-3">
+            <svg className="w-5 h-5 md:w-6 md:h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
             Enterprise Integrations
           </h2>
-          <p className="text-sm text-slate-400 mt-1">Configure vendor-agnostic IntegrationFactory adapters for the AI Swarms.</p>
+          <p className="text-[10px] md:text-sm text-slate-400 mt-1">Configure vendor-agnostic IntegrationFactory adapters for the AI Swarms.</p>
         </div>
         <button onClick={handleSave} className="px-6 py-2.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-sm shadow-[0_4px_14px_0_rgba(79,70,229,0.39)] transition-all transform hover:-translate-y-0.5">
           {saved ? 'Configurations Saved!' : 'Save All Configurations'}
@@ -72,10 +72,10 @@ export default function IntegrationsPage() {
       <div className="p-4 md:p-8 flex flex-col gap-8 bg-slate-950/50 overflow-y-auto">
         
         {/* Version Control */}
-        <div className="bg-slate-900 rounded-2xl border border-slate-700 shadow-sm p-6 flex flex-col xl:flex-row gap-8">
+        <div className="bg-slate-900 rounded-2xl border border-slate-700 shadow-sm p-4 md:p-6 flex flex-col xl:flex-row gap-6 md:gap-8">
           <div className="w-full xl:w-1/2">
-            <h3 className="text-lg font-bold text-white">Version Control (Git)</h3>
-            <p className="text-xs text-slate-400 mb-4">Required for Agentic code analysis and automated PR generation.</p>
+            <h3 className="text-base md:text-lg font-bold text-white">Version Control (Git)</h3>
+            <p className="text-[10px] md:text-xs text-slate-400 mb-4">Required for Agentic code analysis and automated PR generation.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <ProviderCard title="GitHub" active={gitProvider === 'github'} onClick={() => setGitProvider('github')} icon="🐙" />
               <ProviderCard title="GitLab" active={gitProvider === 'gitlab'} onClick={() => setGitProvider('gitlab')} icon="🦊" />
@@ -109,10 +109,10 @@ export default function IntegrationsPage() {
         </div>
 
         {/* Databases */}
-        <div className="bg-slate-900 rounded-2xl border border-slate-700 shadow-sm p-6 flex flex-col xl:flex-row gap-8">
+        <div className="bg-slate-900 rounded-2xl border border-slate-700 shadow-sm p-4 md:p-6 flex flex-col xl:flex-row gap-6 md:gap-8">
           <div className="w-full xl:w-1/2">
-            <h3 className="text-lg font-bold text-white">Database Operations</h3>
-            <p className="text-xs text-slate-400 mb-4">Required for automated schema generation and data verification.</p>
+            <h3 className="text-base md:text-lg font-bold text-white">Database Operations</h3>
+            <p className="text-[10px] md:text-xs text-slate-400 mb-4">Required for automated schema generation and data verification.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <ProviderCard title="PostgreSQL" active={dbProvider === 'postgres'} onClick={() => setDbProvider('postgres')} icon="🐘" />
               <ProviderCard title="MySQL" active={dbProvider === 'mysql'} onClick={() => setDbProvider('mysql')} icon="🐬" />
@@ -157,10 +157,10 @@ export default function IntegrationsPage() {
         </div>
 
         {/* ALM & Issue Tracking */}
-        <div className="bg-slate-900 rounded-2xl border border-slate-700 shadow-sm p-6 flex flex-col xl:flex-row gap-8">
+        <div className="bg-slate-900 rounded-2xl border border-slate-700 shadow-sm p-4 md:p-6 flex flex-col xl:flex-row gap-6 md:gap-8">
           <div className="w-full xl:w-1/2">
-            <h3 className="text-lg font-bold text-white">ALM & Issue Tracking</h3>
-            <p className="text-xs text-slate-400 mb-4">Required for automatic bug filing and BDD spec ingestion.</p>
+            <h3 className="text-base md:text-lg font-bold text-white">ALM & Issue Tracking</h3>
+            <p className="text-[10px] md:text-xs text-slate-400 mb-4">Required for automatic bug filing and BDD spec ingestion.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
               <ProviderCard title="Jira Cloud" active={almProvider === 'jira'} onClick={() => setAlmProvider('jira')} icon="🔷" />
               <ProviderCard title="Azure DevOps" active={almProvider === 'azure'} onClick={() => setAlmProvider('azure')} icon="🟦" />

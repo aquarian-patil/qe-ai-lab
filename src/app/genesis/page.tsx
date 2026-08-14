@@ -35,11 +35,11 @@ export default function GenesisPortal() {
   };
 
   return (
-    <div className="h-full m-0 md:m-4 flex flex-col relative overflow-y-auto lg:overflow-hidden">
+    <div className="flex flex-col relative overflow-y-auto lg:overflow-hidden h-full">
       
-      <header className="px-8 py-6 mb-6">
-        <h2 className="text-2xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400 tracking-wide">Genesis Engine</h2>
-        <p className="text-slate-300 mt-2 text-lg">The Omni-Ingestion Portal. Input a requirement, output a software factory.</p>
+      <header className="px-4 md:px-8 py-6 mb-2 md:mb-6 shrink-0">
+        <h2 className="text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400 tracking-wide">Genesis Engine</h2>
+        <p className="text-slate-300 mt-2 text-[10px] md:text-lg">The Omni-Ingestion Portal. Input a requirement, output a software factory.</p>
       </header>
 
       <div className="flex-1 flex flex-col lg:flex-row gap-6 px-4 md:px-8 overflow-y-auto lg:overflow-hidden pb-8 lg:pb-0">
@@ -123,7 +123,7 @@ export default function GenesisPortal() {
 
           {result && (
             <div className="flex-1 flex flex-col overflow-hidden animate-slide-up">
-              <div className="flex gap-2 border-b border-slate-700 pb-4 mb-4 flex-wrap">
+              <div className="flex gap-2 border-b border-slate-700 pb-4 mb-4 flex-nowrap overflow-x-auto hide-scrollbar custom-scrollbar">
                 <TabButton active={activeTab === 'productDocs'} onClick={() => setActiveTab('productDocs')} icon="📄" label="BDD Specs" />
                 <TabButton active={activeTab === 'frontendCode'} onClick={() => setActiveTab('frontendCode')} icon="⚛️" label="React UI" />
                 <TabButton active={activeTab === 'backendSql'} onClick={() => setActiveTab('backendSql')} icon="🗄️" label="SQL Schema" />
@@ -181,7 +181,7 @@ function TabButton({ active, onClick, icon, label }: { active: boolean, onClick:
   return (
     <button 
       onClick={onClick}
-      className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2
+      className={`px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-colors flex items-center gap-1.5 md:gap-2 whitespace-nowrap
         ${active ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' : 'bg-transparent text-slate-300 hover:bg-slate-200/50 border border-transparent'}`}
     >
       <span>{icon}</span> {label}

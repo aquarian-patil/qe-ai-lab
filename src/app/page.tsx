@@ -32,22 +32,6 @@ export default function Dashboard() {
 
   return (
     <div className="m-0 md:m-4 p-4 md:p-0 flex flex-col gap-6 relative pb-8">
-      <header className="px-8 py-6 glass-panel flex flex-col md:flex-row md:justify-between items-start md:items-center gap-4 relative overflow-hidden shrink-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10" />
-        <div className="relative z-10">
-          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">Executive Command Center</h2>
-          <p className="text-sm text-slate-300 mt-1">Holistic DevSecOps Maturity & Autonomous Ecosystem Status</p>
-        </div>
-        <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full md:w-auto">
-          <Link href="/audit" className="px-6 py-2 rounded-lg bg-slate-700 hover:bg-slate-300 text-white font-bold text-sm transition-colors border border-slate-700 flex items-center justify-center">
-            View Audit Log
-          </Link>
-          <Link href="/genesis" className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all flex items-center justify-center">
-            Trigger Autonomous Run
-          </Link>
-        </div>
-      </header>
-
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 shrink-0">
         <MaturityCard title="Code Quality" score={data.codeQuality.score} icon="💻" color="from-blue-500/20 to-blue-600/20" borderColor="border-blue-500/30" textColor="text-blue-400" />
         <MaturityCard title="Agentic Testing" score={data.agenticTesting.score} icon="🤖" color="from-violet-500/20 to-violet-600/20" borderColor="border-violet-500/30" textColor="text-violet-400" />
@@ -112,6 +96,22 @@ export default function Dashboard() {
           <MaturityLevel level={5} title="Autonomous Ecosystem" desc="Zero-touch factory, omni-ingestion generation, Skynet." active={data.maturityLevel >= 5} />
         </div>
       </div>
+
+      <header className="px-8 py-6 glass-panel flex flex-col md:flex-row md:justify-between items-start md:items-center gap-4 relative overflow-hidden shrink-0">
+        <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10" />
+        <div className="relative z-10">
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">Executive Command Center</h2>
+          <p className="text-sm text-slate-300 mt-1">Holistic DevSecOps Maturity & Autonomous Ecosystem Status</p>
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full md:w-auto">
+          <Link href="/audit" className="px-6 py-2 rounded-lg bg-slate-700 hover:bg-slate-300 text-white font-bold text-sm transition-colors border border-slate-700 flex items-center justify-center">
+            View Audit Log
+          </Link>
+          <Link href="/genesis" className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all flex items-center justify-center">
+            Trigger Autonomous Run
+          </Link>
+        </div>
+      </header>
     </div>
   );
 }

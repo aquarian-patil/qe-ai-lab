@@ -35,14 +35,14 @@ export default function GenesisPortal() {
   };
 
   return (
-    <div className="flex flex-col relative overflow-y-auto lg:overflow-hidden h-full">
+    <div className="flex flex-col relative overflow-y-auto custom-scrollbar lg:overflow-hidden h-full">
       
       <header className="px-4 md:px-8 py-6 mb-2 md:mb-6 shrink-0">
         <h2 className="text-xl md:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-400 tracking-wide">Genesis Engine</h2>
         <p className="text-slate-300 mt-2 text-[10px] md:text-lg">The Omni-Ingestion Portal. Input a requirement, output a software factory.</p>
       </header>
 
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 px-4 md:px-8 overflow-y-auto lg:overflow-hidden pb-8 lg:pb-0">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 px-4 md:px-8 overflow-y-auto custom-scrollbar lg:overflow-hidden pb-8 lg:pb-0">
         
         {/* Left Side: Input Zone */}
         <div className="w-full lg:w-1/3 flex flex-col gap-4 shrink-0">

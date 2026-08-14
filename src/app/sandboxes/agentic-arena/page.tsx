@@ -89,7 +89,7 @@ export default function AgenticAiEvaluator() {
   };
 
   return (
-    <div className="h-full flex flex-col relative overflow-y-auto lg:overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
+    <div className="h-full flex flex-col relative overflow-y-auto custom-scrollbar lg:overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
       <header className="px-4 md:px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center w-full">
         <div>
           <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-3">
@@ -100,14 +100,14 @@ export default function AgenticAiEvaluator() {
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto lg:overflow-hidden bg-slate-950/50 min-w-0 w-full">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto custom-scrollbar lg:overflow-hidden bg-slate-950/50 min-w-0 w-full">
         
         {/* Left Side: Environment Setup */}
         <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full min-w-0">
           <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-4 md:p-6 flex flex-col">
             <h3 className="text-xs md:text-sm font-bold text-slate-300 uppercase tracking-widest mb-4 md:mb-6">Swarm Configuration</h3>
             
-            <div className="flex flex-col gap-5 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+            <div className="flex flex-col gap-5 flex-1 overflow-y-auto custom-scrollbar pr-2 custom-scrollbar">
               {/* Swarm Trigger */}
               <div className="flex flex-col shrink-0">
                 <h4 className="text-[10px] md:text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Swarm Trigger / Event</h4>
@@ -170,7 +170,7 @@ export default function AgenticAiEvaluator() {
             <span className="text-[10px] md:text-xs text-slate-400 tracking-widest font-mono uppercase">Multi-Agent_Stream</span>
           </div>
           
-          <div ref={terminalRef} className="flex-1 overflow-y-auto pr-2 custom-scrollbar flex flex-col gap-4">
+          <div ref={terminalRef} className="flex-1 overflow-y-auto custom-scrollbar pr-2 custom-scrollbar flex flex-col gap-4">
             {trace.length === 0 && !running && (
               <div className="text-slate-600 italic font-mono text-sm text-center mt-10">Awaiting Swarm Deployment...</div>
             )}

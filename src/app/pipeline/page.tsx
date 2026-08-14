@@ -97,7 +97,7 @@ export default function PipelineViewer() {
   };
 
   return (
-    <div className="h-full flex flex-col relative overflow-y-auto lg:overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
+    <div className="h-full flex flex-col relative overflow-y-auto custom-scrollbar lg:overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
       
       <header className="px-4 md:px-8 py-6 border-b border-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-950 shrink-0 w-full">
         <div>
@@ -116,7 +116,7 @@ export default function PipelineViewer() {
         </button>
       </header>
 
-      <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto lg:overflow-hidden min-w-0 w-full">
+      <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto custom-scrollbar lg:overflow-hidden min-w-0 w-full">
         
         {/* Left Side: DAG Visualizer */}
         <div className="w-full xl:flex-1 h-[250px] sm:h-[300px] xl:h-auto xl:min-h-[400px] p-0 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-700 relative bg-slate-950 overflow-hidden flex items-center justify-center min-w-0">
@@ -161,7 +161,7 @@ export default function PipelineViewer() {
             <span className="text-[10px] md:text-xs text-slate-400 ml-4 font-sans tracking-widest uppercase">nexus-orchestrator-tty</span>
           </div>
           
-          <div className="flex-1 overflow-y-auto font-mono pr-2" ref={terminalRef}>
+          <div className="flex-1 overflow-y-auto custom-scrollbar font-mono pr-2" ref={terminalRef}>
             {logs.length === 0 ? (
               <p className="text-slate-400">Awaiting pipeline trigger...</p>
             ) : (

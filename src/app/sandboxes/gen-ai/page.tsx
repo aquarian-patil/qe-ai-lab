@@ -130,7 +130,7 @@ export default function GenAiEvaluator() {
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto bg-slate-950/50 min-w-0 w-full">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto custom-scrollbar bg-slate-950/50 min-w-0 w-full">
         
         {/* Left Side: Input Controls */}
         <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full min-w-0">
@@ -240,7 +240,7 @@ export default function GenAiEvaluator() {
                   <span className="text-[10px] text-slate-400 tracking-widest uppercase">Analysis_Log</span>
                 </div>
                 
-                <div className="flex-1 overflow-y-auto text-[11px] md:text-xs leading-relaxed text-slate-300">
+                <div className="flex-1 overflow-y-auto custom-scrollbar text-[11px] md:text-xs leading-relaxed text-slate-300">
                   {result!.logs.map((log, i) => (
                     <div key={i} className="mb-2">
                       {log.startsWith('[WARN]') ? (

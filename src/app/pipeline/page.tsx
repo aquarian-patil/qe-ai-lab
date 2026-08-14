@@ -99,9 +99,9 @@ export default function PipelineViewer() {
   return (
     <div className="h-full m-0 md:m-4 flex flex-col relative overflow-y-auto lg:overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
       
-      <header className="px-8 py-6 border-b border-slate-700 flex justify-between items-center bg-slate-950 shrink-0">
+      <header className="px-4 md:px-8 py-6 border-b border-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-950 shrink-0 w-full">
         <div>
-          <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-2">
+          <h2 className="text-xl md:text-2xl font-bold text-white tracking-wide flex items-center gap-2">
             <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
             CI/CD Pipeline Viewer
           </h2>
@@ -110,7 +110,7 @@ export default function PipelineViewer() {
         <button 
           onClick={triggerPipeline}
           disabled={stage === 'parallel' || stage === 'nfr'}
-          className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all disabled:opacity-50"
+          className="w-full sm:w-auto px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all disabled:opacity-50 text-center"
         >
           {stage === 'parallel' || stage === 'nfr' ? 'Executing...' : 'Trigger Pipeline'}
         </button>
@@ -119,9 +119,9 @@ export default function PipelineViewer() {
       <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto lg:overflow-hidden pb-8 lg:pb-0">
         
         {/* Left Side: DAG Visualizer */}
-        <div className="w-full xl:w-[60%] min-h-[400px] xl:min-h-0 xl:h-auto p-4 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-700 flex items-center justify-start xl:justify-center relative bg-slate-950 overflow-auto shrink-0">
+        <div className="w-full xl:w-[60%] min-h-[400px] xl:min-h-0 xl:h-auto p-4 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-700 relative bg-slate-950 overflow-x-auto shrink-0 flex items-center justify-start xl:justify-center">
           
-          <div className="relative w-[700px] h-[400px] shrink-0">
+          <div className="relative w-[700px] min-w-[700px] h-[400px] shrink-0 mx-auto">
             {/* SVG Connectors */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
                {/* Agentic to NFR (Flowing from Left to Right) */}

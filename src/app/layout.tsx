@@ -30,7 +30,7 @@ export default function RootLayout({
             </div>
             
             {/* Universal Footer */}
-            <footer className="mt-4 py-3 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 pr-2 md:pr-4">
+            <footer className="hidden md:flex mt-4 py-3 border-t border-slate-800 flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 pr-2 md:pr-4">
                <div className="flex flex-wrap justify-center gap-4">
                  <ComingSoon><span className="hover:text-blue-600 transition-colors cursor-pointer">Privacy Policy</span></ComingSoon>
                  <ComingSoon><span className="hover:text-blue-600 transition-colors cursor-pointer">Security Audits</span></ComingSoon>

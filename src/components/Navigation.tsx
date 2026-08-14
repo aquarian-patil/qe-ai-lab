@@ -47,6 +47,43 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
         </div>
       </header>
 
+      {/* Mobile Menu Overlay */}
+      {moreMenuOpen && (
+        <div className="md:hidden fixed inset-0 bg-slate-950/95 backdrop-blur-2xl z-40 flex flex-col p-6 overflow-y-auto pb-28 animate-slide-up">
+          <div className="flex justify-between items-center mb-8 border-b border-slate-800 pb-4">
+            <h2 className="text-xl font-bold text-white tracking-wide">Main Menu</h2>
+            <button onClick={() => setMoreMenuOpen(false)} className="p-2 bg-slate-900 rounded-full text-slate-400 hover:text-white transition-colors">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+          
+          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-3 px-2">Command Center</p>
+          <nav className="space-y-1 mb-6">
+            <NavItem href="/" label="Executive Dashboard" icon="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" onClick={() => setMoreMenuOpen(false)} />
+            <NavItem href="/pipeline" label="CI/CD Pipeline Viewer" icon="M13 10V3L4 14h7v7l9-11h-7z" onClick={() => setMoreMenuOpen(false)} />
+          </nav>
+
+          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-3 px-2">God Mode</p>
+          <nav className="space-y-1 mb-6">
+            <NavItem href="/genesis" label="Genesis Engine" icon="M13 10V3L4 14h7v7l9-11h-7z" onClick={() => setMoreMenuOpen(false)} />
+          </nav>
+
+          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-3 px-2">Enterprise Governance</p>
+          <nav className="space-y-1 mb-6">
+            <NavItem href="/approvals" label="HITL Approvals" icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" onClick={() => setMoreMenuOpen(false)} />
+            <NavItem href="/audit" label="Audit Logs" icon="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" onClick={() => setMoreMenuOpen(false)} />
+            <NavItem href="/integrations" label="Integrations Config" icon="M13 10V3L4 14h7v7l9-11h-7z" onClick={() => setMoreMenuOpen(false)} />
+          </nav>
+
+          <p className="text-[10px] text-slate-400 uppercase tracking-widest font-bold mb-3 px-2">Testing Sandboxes</p>
+          <nav className="space-y-1 mb-6">
+            <NavItem href="/sandboxes/gen-ai" label="GenAI Evaluator" icon="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" onClick={() => setMoreMenuOpen(false)} />
+            <NavItem href="/sandboxes/ai-agent" label="AI Agent Evaluator" icon="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" onClick={() => setMoreMenuOpen(false)} />
+            <NavItem href="/sandboxes/agentic-arena" label="Agentic AI Evaluator" icon="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" onClick={() => setMoreMenuOpen(false)} />
+          </nav>
+        </div>
+      )}
+
       {/* Main Layout Container */}
       <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
 
@@ -126,16 +163,23 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
         </Link>
         
         <TabItem href="/approvals" icon="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" label="HITL" badge />
-        <TabItem href="/sandboxes/gen-ai" icon="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" label="Labs" />
+        
+        {/* Menu Toggle */}
+        <button onClick={() => setMoreMenuOpen(true)} className="flex flex-col items-center gap-1 text-slate-400 hover:text-white transition-colors relative p-2">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <span className="text-[10px] font-medium">Menu</span>
+        </button>
       </div>
 
     </div>
   );
 }
 
-function NavItem({ href, label, icon }: { href: string; label: string; icon: string; }) {
+function NavItem({ href, label, icon, onClick }: { href: string; label: string; icon: string; onClick?: () => void }) {
   return (
-    <Link href={href} className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 text-slate-300 hover:text-blue-400 hover:bg-slate-800/50`}>
+    <Link href={href} onClick={onClick} className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 text-slate-300 hover:text-blue-400 hover:bg-slate-800/50`}>
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} />
       </svg>

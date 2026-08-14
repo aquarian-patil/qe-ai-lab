@@ -159,7 +159,7 @@ export default function GenAiEvaluator() {
                   AI Response / Payload
                 </h4>
                 
-                <div className="flex-1 relative flex flex-col border-2 border-dashed border-slate-700 rounded-xl bg-slate-950 transition-colors hover:border-teal-400 hover:bg-slate-50/50 focus-within:border-teal-500 focus-within:border-solid focus-within:ring-4 focus-within:ring-teal-500/10 focus-within:bg-white overflow-hidden group">
+                <div className="flex-1 relative flex flex-col border-2 border-dashed border-slate-700 rounded-xl bg-slate-950 transition-colors hover:border-teal-400 hover:bg-slate-50/50 focus-within:border-teal-500 focus-within:border-solid focus-within:ring-4 focus-within:ring-teal-500/10 focus-within:bg-white overflow-hidden group min-h-[200px]">
                   <textarea 
                     className="flex-1 w-full bg-transparent p-5 text-slate-300 font-mono text-sm leading-relaxed resize-none outline-none z-10 relative"
                     placeholder=""
@@ -168,11 +168,11 @@ export default function GenAiEvaluator() {
                   />
                   
                   {input.length === 0 && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 pointer-events-none z-0 bg-transparent transition-colors">
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 pointer-events-none z-0 bg-transparent transition-colors p-4 text-center">
                       <svg className="w-10 h-10 mb-3 text-slate-300 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
-                      <p className="font-bold text-slate-600 text-sm">What did you get from AI for your ask/prompt?</p>
-                      <p className="font-bold text-slate-600 text-sm">Just copy paste it here or upload</p>
-                      <p className="text-[11px] font-medium text-slate-400 mt-2 uppercase tracking-wide">Supports JSON, Markdown, Screenshots & Docs</p>
+                      <p className="font-bold text-slate-600 text-sm">Paste AI Response here</p>
+                      <p className="font-bold text-slate-600 text-sm hidden md:block">Just copy paste it here or upload</p>
+                      <p className="text-[10px] md:text-[11px] font-medium text-slate-400 mt-2 uppercase tracking-wide">Supports JSON, Markdown, Screenshots & Docs</p>
                     </div>
                   )}
                 </div>

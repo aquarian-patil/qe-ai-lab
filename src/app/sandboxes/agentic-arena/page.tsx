@@ -90,29 +90,29 @@ export default function AgenticAiEvaluator() {
 
   return (
     <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
-      <header className="px-8 py-6 border-b border-slate-200 bg-white/50 shrink-0 flex justify-between items-center">
+      <header className="px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-3">
+          <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-3">
             <svg className="w-6 h-6 text-fuchsia-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
             Agentic AI Evaluator
           </h2>
-          <p className="text-sm text-slate-500 mt-1">Evaluate Multi-Agent Swarms by testing orchestration, task delegation, and swarm collaboration.</p>
+          <p className="text-sm text-slate-400 mt-1">Evaluate Multi-Agent Swarms by testing orchestration, task delegation, and swarm collaboration.</p>
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-50/50">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-950/50">
         
         {/* Left Side: Environment Setup */}
         <div className="lg:w-[55%] flex flex-col relative h-full">
-          <div className="flex-1 border border-slate-200 rounded-xl bg-white shadow-sm p-6 flex flex-col">
-            <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6">Swarm Configuration</h3>
+          <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-6 flex flex-col">
+            <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">Swarm Configuration</h3>
             
             <div className="flex flex-col gap-5 flex-1 overflow-y-auto pr-2 custom-scrollbar">
               {/* Swarm Trigger */}
               <div className="flex flex-col shrink-0">
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Swarm Trigger / Event</h4>
+                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Swarm Trigger / Event</h4>
                 <textarea 
-                  className="w-full bg-slate-50 border border-slate-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-800 text-sm leading-relaxed focus:bg-white focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 transition-all resize-none outline-none"
+                  className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 transition-all resize-none outline-none"
                   rows={2}
                   placeholder="What event kicks off the agents? (e.g., 'Playwright nightly pipeline failed on Login step')"
                   value={trigger}
@@ -122,14 +122,14 @@ export default function AgenticAiEvaluator() {
 
               {/* Participating Agents */}
               <div className="flex flex-col shrink-0">
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Participating Agents</h4>
+                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Participating Agents</h4>
                 <div className="flex flex-wrap gap-2">
                   {mockAgents.map(agent => (
                     <div 
                       key={agent.id}
                       onClick={() => toggleAgent(agent.id)}
                       className={`px-3 py-2 rounded-lg border text-xs font-semibold flex items-center gap-2 cursor-pointer transition-colors select-none
-                        ${activeAgents.includes(agent.id) ? 'bg-fuchsia-100 border-fuchsia-500 text-fuchsia-900' : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'}`}
+                        ${activeAgents.includes(agent.id) ? 'bg-fuchsia-100 border-fuchsia-500 text-fuchsia-900' : 'bg-slate-900 border-slate-700 text-slate-600 hover:border-slate-300'}`}
                     >
                       <span>{agent.icon}</span> {agent.name}
                     </div>
@@ -139,9 +139,9 @@ export default function AgenticAiEvaluator() {
 
               {/* Swarm Objective */}
               <div className="flex flex-col shrink-0">
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Swarm Objective</h4>
+                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Swarm Objective</h4>
                 <textarea 
-                  className="w-full bg-slate-50 border border-slate-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-800 text-sm leading-relaxed focus:bg-white focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 transition-all resize-none outline-none"
+                  className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 transition-all resize-none outline-none"
                   rows={2}
                   placeholder="What is the final success criteria? (e.g., 'Self-heal the code and verify the fix')"
                   value={objective}
@@ -168,7 +168,7 @@ export default function AgenticAiEvaluator() {
               <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
               <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
             </div>
-            <span className="text-xs text-slate-500 tracking-widest font-mono uppercase">Multi-Agent_Stream</span>
+            <span className="text-xs text-slate-400 tracking-widest font-mono uppercase">Multi-Agent_Stream</span>
           </div>
           
           <div ref={terminalRef} className="flex-1 overflow-y-auto pr-2 custom-scrollbar flex flex-col gap-4">
@@ -182,7 +182,7 @@ export default function AgenticAiEvaluator() {
                 <div className="flex-1 flex flex-col gap-1.5">
                   <div className="flex items-center justify-between">
                     <span className={`font-bold text-sm ${evt.color}`}>{evt.agent}</span>
-                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest px-2 py-0.5 rounded-full bg-slate-800">{evt.role}</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest px-2 py-0.5 rounded-full bg-slate-800">{evt.role}</span>
                   </div>
                   <span className="text-slate-300 text-sm leading-relaxed">{evt.message}</span>
                 </div>
@@ -190,7 +190,7 @@ export default function AgenticAiEvaluator() {
             ))}
             
             {running && (
-              <div className="flex items-center gap-3 text-slate-500 mt-2 px-2">
+              <div className="flex items-center gap-3 text-slate-400 mt-2 px-2">
                 <div className="flex gap-1">
                   <div className="w-1.5 h-1.5 rounded-full bg-fuchsia-500 animate-pulse"></div>
                   <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse delay-75"></div>

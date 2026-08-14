@@ -20,7 +20,7 @@ export default function HitlBadge() {
   if (count === 0) return null;
 
   return (
-    <span className="ml-auto bg-red-500 text-slate-900 text-[10px] font-black px-2 py-0.5 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+    <span className="ml-auto bg-red-500 text-white text-[10px] font-black px-2 py-0.5 rounded-full shadow-[0_0_10px_rgba(239,68,68,0.5)]">
       {count}
     </span>
   );

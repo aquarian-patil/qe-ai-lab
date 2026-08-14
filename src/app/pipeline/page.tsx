@@ -66,8 +66,8 @@ export default function PipelineViewer() {
     const isRunning = state === 'running';
     const isComplete = state === 'complete';
     
-    let borderClass = 'border-slate-300';
-    let bgClass = 'bg-white';
+    let borderClass = 'border-slate-700';
+    let bgClass = 'bg-slate-900';
     let dotClass = 'bg-slate-300';
     let iconColor = '';
 
@@ -86,8 +86,8 @@ export default function PipelineViewer() {
       <div className={`absolute w-64 p-4 rounded-xl border ${borderClass} ${bgClass} flex items-center gap-4 transition-all duration-500 z-10 shadow-lg ${posClasses}`}>
         <div className={`w-3 h-3 rounded-full ${dotClass} shrink-0`}></div>
         <div className="flex-1 min-w-0">
-          <h4 className={`font-bold text-sm ${isComplete || isRunning ? 'text-slate-900' : 'text-slate-500'}`}>{title}</h4>
-          <p className="text-[10px] text-slate-500 truncate">{subtitle}</p>
+          <h4 className={`font-bold text-sm ${isComplete || isRunning ? 'text-white' : 'text-slate-400'}`}>{title}</h4>
+          <p className="text-[10px] text-slate-400 truncate">{subtitle}</p>
         </div>
         {isComplete && (
           <svg className={`w-5 h-5 ${iconColor} shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
@@ -99,13 +99,13 @@ export default function PipelineViewer() {
   return (
     <div className="h-full m-0 md:m-4 flex flex-col relative overflow-y-auto lg:overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
       
-      <header className="px-8 py-6 border-b border-slate-300 flex justify-between items-center bg-slate-50 shrink-0">
+      <header className="px-8 py-6 border-b border-slate-700 flex justify-between items-center bg-slate-950 shrink-0">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-2">
+          <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-2">
             <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
             CI/CD Pipeline Viewer
           </h2>
-          <p className="text-sm text-slate-800 mt-1">Real-time DAG orchestration of the Agentic, Security, and NFR Swarms.</p>
+          <p className="text-sm text-slate-300 mt-1">Real-time DAG orchestration of the Agentic, Security, and NFR Swarms.</p>
         </div>
         <button 
           onClick={triggerPipeline}
@@ -119,7 +119,7 @@ export default function PipelineViewer() {
       <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto lg:overflow-hidden pb-8 lg:pb-0">
         
         {/* Left Side: DAG Visualizer */}
-        <div className="w-full xl:w-[60%] min-h-[400px] xl:min-h-0 xl:h-auto p-4 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-300 flex items-center justify-start xl:justify-center relative bg-slate-50 overflow-auto shrink-0">
+        <div className="w-full xl:w-[60%] min-h-[400px] xl:min-h-0 xl:h-auto p-4 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-700 flex items-center justify-start xl:justify-center relative bg-slate-950 overflow-auto shrink-0">
           
           <div className="relative w-[700px] h-[400px] shrink-0">
             {/* SVG Connectors */}
@@ -158,12 +158,12 @@ export default function PipelineViewer() {
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            <span className="text-xs text-slate-500 ml-4 font-sans tracking-widest uppercase">nexus-orchestrator-tty</span>
+            <span className="text-xs text-slate-400 ml-4 font-sans tracking-widest uppercase">nexus-orchestrator-tty</span>
           </div>
           
           <div className="flex-1 overflow-y-auto font-mono pr-2" ref={terminalRef}>
             {logs.length === 0 ? (
-              <p className="text-slate-500">Awaiting pipeline trigger...</p>
+              <p className="text-slate-400">Awaiting pipeline trigger...</p>
             ) : (
               logs.map((log, i) => {
                 let colorClass = 'text-slate-300';

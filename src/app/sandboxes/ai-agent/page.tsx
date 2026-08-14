@@ -96,29 +96,29 @@ export default function AiAgentEvaluator() {
 
   return (
     <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
-      <header className="px-8 py-6 border-b border-slate-200 bg-white/50 shrink-0 flex justify-between items-center">
+      <header className="px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-3">
+          <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-3">
             <svg className="w-6 h-6 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" /></svg>
             AI Agent Evaluator
           </h2>
-          <p className="text-sm text-slate-500 mt-1">Evaluate autonomous agent trajectories, tool-calling sequences, and DevSecOps logic.</p>
+          <p className="text-sm text-slate-400 mt-1">Evaluate autonomous agent trajectories, tool-calling sequences, and DevSecOps logic.</p>
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-50/50">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-950/50">
         
         {/* Left Side: Environment Setup */}
         <div className="lg:w-[55%] flex flex-col relative h-full">
-          <div className="flex-1 border border-slate-200 rounded-xl bg-white shadow-sm p-6 flex flex-col">
-            <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6">Evaluation Environment</h3>
+          <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-6 flex flex-col">
+            <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">Evaluation Environment</h3>
             
             <div className="flex flex-col gap-5 flex-1 overflow-y-auto pr-2 custom-scrollbar">
               {/* Task/Goal */}
               <div className="flex flex-col shrink-0">
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Agent Goal / Objective</h4>
+                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Agent Goal / Objective</h4>
                 <textarea 
-                  className="w-full bg-slate-50 border border-slate-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-800 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
+                  className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
                   rows={2}
                   placeholder="What is the agent supposed to achieve? (e.g., 'Find the bug in this API and create a Jira ticket')"
                   value={goal}
@@ -128,14 +128,14 @@ export default function AiAgentEvaluator() {
 
               {/* Tools Selection */}
               <div className="flex flex-col shrink-0">
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Available Tools</h4>
+                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Available Tools</h4>
                 <div className="flex flex-wrap gap-2">
                   {mockTools.map(tool => (
                     <div 
                       key={tool.id}
                       onClick={() => toggleTool(tool.id)}
                       className={`px-3 py-2 rounded-lg border text-xs font-semibold flex items-center gap-2 cursor-pointer transition-colors select-none
-                        ${activeTools.includes(tool.id) ? 'bg-violet-100 border-violet-500 text-violet-900' : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'}`}
+                        ${activeTools.includes(tool.id) ? 'bg-violet-100 border-violet-500 text-violet-900' : 'bg-slate-900 border-slate-700 text-slate-600 hover:border-slate-300'}`}
                     >
                       <span>{tool.icon}</span> {tool.name}
                     </div>
@@ -145,9 +145,9 @@ export default function AiAgentEvaluator() {
 
               {/* Constraints */}
               <div className="flex flex-col shrink-0">
-                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Agent Constraints (System Prompt)</h4>
+                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Agent Constraints (System Prompt)</h4>
                 <textarea 
-                  className="w-full bg-slate-50 border border-slate-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-800 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
+                  className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
                   rows={3}
                   placeholder="What rules must the agent follow? (e.g., 'Do not merge code directly, only open PRs')"
                   value={constraints}
@@ -172,7 +172,7 @@ export default function AiAgentEvaluator() {
             <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
             <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
-            <span className="text-xs text-slate-500 ml-4 tracking-widest font-mono uppercase">Agent_Trajectory_Stream</span>
+            <span className="text-xs text-slate-400 ml-4 tracking-widest font-mono uppercase">Agent_Trajectory_Stream</span>
           </div>
           
           <div ref={terminalRef} className="flex-1 overflow-y-auto font-mono text-[13px] leading-loose pr-2 custom-scrollbar">

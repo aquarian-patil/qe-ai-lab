@@ -17,7 +17,7 @@ export default function Dashboard() {
   }, []);
 
   if (!data) {
-    return <div className="h-full flex items-center justify-center text-slate-800">Loading Command Center...</div>;
+    return <div className="h-full flex items-center justify-center text-slate-300">Loading Command Center...</div>;
   }
 
   // Mock historical data for the trend graph based on the current score
@@ -35,11 +35,11 @@ export default function Dashboard() {
       <header className="px-8 py-6 glass-panel flex flex-col md:flex-row md:justify-between items-start md:items-center gap-4 relative overflow-hidden shrink-0">
         <div className="absolute inset-0 bg-gradient-to-r from-violet-500/10 to-blue-500/10" />
         <div className="relative z-10">
-          <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight leading-tight">Executive Command Center</h2>
-          <p className="text-sm text-slate-800 mt-1">Holistic DevSecOps Maturity & Autonomous Ecosystem Status</p>
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-tight">Executive Command Center</h2>
+          <p className="text-sm text-slate-300 mt-1">Holistic DevSecOps Maturity & Autonomous Ecosystem Status</p>
         </div>
         <div className="flex flex-col sm:flex-row gap-4 relative z-10 w-full md:w-auto">
-          <Link href="/audit" className="px-6 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-900 font-bold text-sm transition-colors border border-slate-300 flex items-center justify-center">
+          <Link href="/audit" className="px-6 py-2 rounded-lg bg-slate-700 hover:bg-slate-300 text-white font-bold text-sm transition-colors border border-slate-700 flex items-center justify-center">
             View Audit Log
           </Link>
           <Link href="/genesis" className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all flex items-center justify-center">
@@ -51,7 +51,7 @@ export default function Dashboard() {
       <div className="flex flex-col lg:flex-row gap-6 lg:h-[400px] shrink-0">
         {/* Trend Graph */}
         <div className="flex-1 glass-panel p-6 flex flex-col h-[300px] lg:h-auto">
-          <h3 className="text-base md:text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+          <h3 className="text-base md:text-lg font-bold text-white mb-6 flex items-center gap-2">
             <svg className="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
             6-Month Maturity Trend
           </h3>
@@ -81,8 +81,8 @@ export default function Dashboard() {
         <div className="w-full lg:w-[300px] py-12 lg:py-6 glass-panel p-6 flex flex-col items-center justify-center relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-violet-500/20 group-hover:scale-110 transition-transform duration-700" />
           <div className="relative z-10 text-center">
-            <p className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-2">Current Maturity</p>
-            <h1 className="text-5xl md:text-7xl font-black text-slate-900 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] mb-2">
+            <p className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-2">Current Maturity</p>
+            <h1 className="text-5xl md:text-7xl font-black text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.5)] mb-2">
               L{data.maturityLevel.toFixed(1)}
             </h1>
             <p className="text-blue-400 font-bold uppercase tracking-widest text-xs">Autonomous Execution</p>
@@ -98,7 +98,7 @@ export default function Dashboard() {
       </div>
 
       <div className="mt-6 glass-panel p-6 shrink-0">
-        <h3 className="text-base md:text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
+        <h3 className="text-base md:text-lg font-bold text-white mb-6 flex items-center gap-2">
           <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
           DevSecOps Autonomous Maturity Matrix
         </h3>
@@ -119,13 +119,13 @@ function MaturityCard({ title, score, icon, color, borderColor, textColor }: any
     <div className={`p-6 rounded-2xl border ${borderColor} bg-gradient-to-br ${color} backdrop-blur-xl relative overflow-hidden group hover:scale-[1.02] transition-transform`}>
       <div className="flex justify-between items-start relative z-10">
         <div>
-          <p className="text-sm font-bold text-slate-800 mb-1">{title}</p>
+          <p className="text-sm font-bold text-slate-300 mb-1">{title}</p>
           <p className={`text-3xl font-black ${textColor}`}>{score.toFixed(1)}<span className="text-lg opacity-50">/5</span></p>
         </div>
-        <span className="text-2xl bg-slate-200 p-2 rounded-xl">{icon}</span>
+        <span className="text-2xl bg-slate-700 p-2 rounded-xl">{icon}</span>
       </div>
       
-      <div className="mt-6 w-full h-2 bg-white/90 rounded-full overflow-hidden relative z-10">
+      <div className="mt-6 w-full h-2 bg-slate-900/90 rounded-full overflow-hidden relative z-10">
         <div 
           className={`h-full ${textColor.replace('text-', 'bg-')} transition-all duration-1000 ease-out`}
           style={{ width: `${(score / 5) * 100}%` }}
@@ -138,11 +138,11 @@ function MaturityCard({ title, score, icon, color, borderColor, textColor }: any
 function MaturityLevel({ level, title, desc, active }: { level: number, title: string, desc: string, active: boolean }) {
   return (
     <div className={`p-4 rounded-xl border transition-all duration-500 relative overflow-hidden
-      ${active ? 'border-blue-500 bg-blue-50 shadow-[0_0_20px_rgba(59,130,246,0.15)] scale-[1.02]' : 'border-slate-300 bg-slate-50 opacity-60'}`}
+      ${active ? 'border-blue-500 bg-blue-50 shadow-[0_0_20px_rgba(59,130,246,0.15)] scale-[1.02]' : 'border-slate-700 bg-slate-950 opacity-60'}`}
     >
       {active && <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-violet-500 to-blue-500" />}
       <div className="flex items-center gap-2 mb-2">
-        <span className={`text-xs font-black px-2 py-1 rounded-md ${active ? 'bg-blue-500 text-white' : 'bg-slate-200 text-slate-700'}`}>L{level}</span>
+        <span className={`text-xs font-black px-2 py-1 rounded-md ${active ? 'bg-blue-500 text-white' : 'bg-slate-700 text-slate-700'}`}>L{level}</span>
         <h4 className={`text-sm font-bold ${active ? 'text-blue-600' : 'text-slate-700'}`}>{title}</h4>
       </div>
       <p className="text-xs text-slate-600 leading-relaxed">{desc}</p>

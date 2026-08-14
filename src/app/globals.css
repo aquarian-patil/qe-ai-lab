@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc; /* Very light pearl/slate */
-  --foreground: #0f172a; /* Dark slate text */
-  --panel-bg: rgba(255, 255, 255, 0.7); /* Heavy frosted glass */
-  --panel-border: rgba(226, 232, 240, 0.9); /* slate-200 border */
+  --background: #020617; /* slate-950 */
+  --foreground: #f8fafc; /* slate-50 text */
+  --panel-bg: rgba(15, 23, 42, 0.7); /* slate-900 frosted glass */
+  --panel-border: rgba(30, 41, 59, 0.9); /* slate-800 border */
   
   --neon-purple: #8b5cf6; /* violet-500 */
   --neon-cyan: #3b82f6; /* blue-500 */
@@ -22,9 +22,9 @@ body {
 .glass-panel {
   background-color: var(--panel-bg);
   border: 1px solid var(--panel-border);
-  backdrop-filter: blur(40px);
+  backdrop-filter: blur(20px);
   border-radius: 1rem;
-  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
 }
   
 .neon-text-purple {

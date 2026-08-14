@@ -4,8 +4,8 @@ import Navigation from '@/components/Navigation';
 import ComingSoon from '@/components/ComingSoon';
 
 export const metadata: Metadata = {
-  title: 'Aegis QE',
-  description: 'Enterprise Agentic Quality Engineering Framework',
+  title: 'Nexus AI | Enterprise Quality Engineering',
+  description: 'Next-Generation Agentic Quality Engineering Framework',
 };
 
 export const viewport: Viewport = {

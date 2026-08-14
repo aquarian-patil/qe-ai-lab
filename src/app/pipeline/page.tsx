@@ -119,9 +119,9 @@ export default function PipelineViewer() {
       <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto lg:overflow-hidden min-w-0 w-full">
         
         {/* Left Side: DAG Visualizer */}
-        <div className="w-full xl:flex-1 h-[250px] sm:h-[300px] xl:h-auto xl:min-h-[400px] p-4 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-700 relative bg-slate-950 overflow-x-auto custom-scrollbar flex items-start xl:items-center min-w-0">
+        <div className="w-full xl:flex-1 h-[250px] sm:h-[300px] xl:h-auto xl:min-h-[400px] p-0 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-700 relative bg-slate-950 overflow-hidden flex items-center justify-center min-w-0">
           
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 xl:translate-x-0 xl:left-auto xl:relative xl:top-0 w-[700px] h-[400px] shrink-0 xl:m-auto origin-top xl:origin-center scale-[0.45] sm:scale-[0.65] xl:scale-90 2xl:scale-100">
+          <div className="relative w-[700px] h-[400px] shrink-0 mx-auto origin-center scale-[0.45] sm:scale-[0.6] xl:scale-[0.75] 2xl:scale-[0.9]">
             {/* SVG Connectors */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
                {/* Agentic to NFR (Flowing from Left to Right) */}

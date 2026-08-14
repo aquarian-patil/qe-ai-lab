@@ -20,32 +20,39 @@ body {
 
 /* Custom Scrollbar for Webkit */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: rgba(15, 23, 42, 0.8); /* slate-900 */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.5); /* slate-500 with opacity */
+  background: rgba(99, 102, 241, 0.6); /* indigo-500 */
   border-radius: 10px;
+  border: 2px solid rgba(15, 23, 42, 0.8);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.8); /* slate-400 with opacity */
+  background: rgba(99, 102, 241, 1);
 }
 
 /* Custom Scrollbar Utility */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
+  height: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.4);
+  border-radius: 8px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.3);
+  background: rgba(59, 130, 246, 0.6); /* blue-500 */
+  border-radius: 8px;
 }
 .custom-scrollbar:hover::-webkit-scrollbar-thumb {
-  background: rgba(100, 116, 139, 0.6);
+  background: rgba(59, 130, 246, 0.9);
 }
 
 /* Glassmorphism Utilities */

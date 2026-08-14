@@ -95,7 +95,7 @@ export default function AiAgentEvaluator() {
   };
 
   return (
-    <div className="h-full m-0 md:m-4 flex flex-col relative overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
+    <div className="h-full flex flex-col relative overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
       <header className="px-4 md:px-8 py-6 border-b border-slate-700 bg-slate-950/50 shrink-0 flex justify-between items-center w-full">
         <div>
           <h2 className="text-2xl font-bold text-white tracking-wide flex items-center gap-3">

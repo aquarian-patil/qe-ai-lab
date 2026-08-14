@@ -25,7 +25,7 @@ export default function RootLayout({
         <Navigation>
           {/* Main Content Area */}
           <main className="flex-1 p-4 md:p-8 pt-4 md:pt-4 relative z-10 flex flex-col h-full overflow-hidden">
-            <div className="flex-1 overflow-y-auto pr-2 md:pr-4">
+            <div className="flex-1 overflow-y-auto custom-scrollbar">
                {children}
             </div>
             

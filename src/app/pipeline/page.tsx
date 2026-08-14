@@ -97,7 +97,7 @@ export default function PipelineViewer() {
   };
 
   return (
-    <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
+    <div className="h-full m-4 flex flex-col relative overflow-y-auto lg:overflow-hidden glass-panel">
       
       <header className="px-8 py-6 border-b border-slate-300 flex justify-between items-center bg-slate-50 shrink-0">
         <div>
@@ -116,10 +116,10 @@ export default function PipelineViewer() {
         </button>
       </header>
 
-      <div className="flex-1 flex flex-col xl:flex-row overflow-hidden">
+      <div className="flex-1 flex flex-col xl:flex-row overflow-y-auto lg:overflow-hidden pb-8 lg:pb-0">
         
         {/* Left Side: DAG Visualizer */}
-        <div className="w-full xl:w-[60%] h-[50%] xl:h-auto p-4 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-300 flex items-center justify-start xl:justify-center relative bg-slate-50 overflow-auto">
+        <div className="w-full xl:w-[60%] min-h-[400px] xl:min-h-0 xl:h-auto p-4 md:p-8 border-b xl:border-b-0 xl:border-r border-slate-300 flex items-center justify-start xl:justify-center relative bg-slate-50 overflow-auto shrink-0">
           
           <div className="relative w-[700px] h-[400px] shrink-0">
             {/* SVG Connectors */}
@@ -153,7 +153,7 @@ export default function PipelineViewer() {
         </div>
 
         {/* Right Side: Terminal */}
-        <div className="w-full xl:w-[40%] h-[50%] xl:h-auto p-4 md:p-6 bg-slate-950 flex flex-col font-mono text-sm relative">
+        <div className="w-full xl:w-[40%] min-h-[300px] xl:min-h-0 xl:h-auto p-4 md:p-6 bg-slate-950 flex flex-col font-mono text-sm relative shrink-0">
           <div className="flex gap-2 mb-4 border-b border-slate-800 pb-3 items-center shrink-0">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>

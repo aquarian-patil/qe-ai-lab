@@ -56,7 +56,7 @@ export default function IntegrationsPage() {
 
   return (
     <div className="m-4 flex flex-col relative glass-panel mb-8">
-      <header className="px-8 py-6 border-b border-slate-200 bg-white/50 flex justify-between items-center">
+      <header className="px-4 md:px-8 py-6 border-b border-slate-200 bg-white/50 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 shrink-0">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-3">
             <svg className="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
@@ -69,11 +69,11 @@ export default function IntegrationsPage() {
         </button>
       </header>
 
-      <div className="p-8 flex flex-col gap-8 bg-slate-50/50">
+      <div className="p-4 md:p-8 flex flex-col gap-8 bg-slate-50/50 overflow-y-auto">
         
         {/* Version Control */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col xl:flex-row gap-8">
-          <div className="xl:w-1/2">
+          <div className="w-full xl:w-1/2">
             <h3 className="text-lg font-bold text-slate-900">Version Control (Git)</h3>
             <p className="text-xs text-slate-500 mb-4">Required for Agentic code analysis and automated PR generation.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -83,7 +83,7 @@ export default function IntegrationsPage() {
               <ProviderCard title="Azure Repos" active={gitProvider === 'azure'} onClick={() => setGitProvider('azure')} icon="☁️" />
             </div>
           </div>
-          <div className="xl:w-1/2 bg-slate-50/50 rounded-xl p-6 border border-slate-100 flex flex-col shadow-inner">
+          <div className="w-full xl:w-1/2 bg-slate-50/50 rounded-xl p-6 border border-slate-100 flex flex-col shadow-inner">
             <div className="flex justify-between items-center mb-5">
               <h4 className="text-sm font-bold text-slate-800 capitalize">{gitProvider} Configuration</h4>
               {renderBadge(gitStatus)}
@@ -110,7 +110,7 @@ export default function IntegrationsPage() {
 
         {/* Databases */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col xl:flex-row gap-8">
-          <div className="xl:w-1/2">
+          <div className="w-full xl:w-1/2">
             <h3 className="text-lg font-bold text-slate-900">Database Operations</h3>
             <p className="text-xs text-slate-500 mb-4">Required for automated schema generation and data verification.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -121,7 +121,7 @@ export default function IntegrationsPage() {
               <ProviderCard title="Snowflake" active={dbProvider === 'snowflake'} onClick={() => setDbProvider('snowflake')} icon="❄️" />
             </div>
           </div>
-          <div className="xl:w-1/2 bg-slate-50/50 rounded-xl p-6 border border-slate-100 flex flex-col shadow-inner">
+          <div className="w-full xl:w-1/2 bg-slate-50/50 rounded-xl p-6 border border-slate-100 flex flex-col shadow-inner">
             <div className="flex justify-between items-center mb-5">
               <h4 className="text-sm font-bold text-slate-800 capitalize">{dbProvider} Configuration</h4>
               {renderBadge(dbStatus)}
@@ -158,7 +158,7 @@ export default function IntegrationsPage() {
 
         {/* ALM & Issue Tracking */}
         <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col xl:flex-row gap-8">
-          <div className="xl:w-1/2">
+          <div className="w-full xl:w-1/2">
             <h3 className="text-lg font-bold text-slate-900">ALM & Issue Tracking</h3>
             <p className="text-xs text-slate-500 mb-4">Required for automatic bug filing and BDD spec ingestion.</p>
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -169,7 +169,7 @@ export default function IntegrationsPage() {
               <ProviderCard title="Linear" active={almProvider === 'linear'} onClick={() => setAlmProvider('linear')} icon="📐" />
             </div>
           </div>
-          <div className="xl:w-1/2 bg-slate-50/50 rounded-xl p-6 border border-slate-100 flex flex-col shadow-inner">
+          <div className="w-full xl:w-1/2 bg-slate-50/50 rounded-xl p-6 border border-slate-100 flex flex-col shadow-inner">
             <div className="flex justify-between items-center mb-5">
               <h4 className="text-sm font-bold text-slate-800 capitalize">{almProvider} Configuration</h4>
               {renderBadge(almStatus)}

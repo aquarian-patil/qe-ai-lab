@@ -109,7 +109,7 @@ export default function GenAiEvaluator() {
 
   return (
     <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
-      <header className="px-8 py-6 border-b border-slate-200 bg-white/50 shrink-0 flex justify-between items-center">
+      <header className="px-4 md:px-8 py-6 border-b border-slate-200 bg-white/50 shrink-0 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
         <div>
           <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-3">
             <svg className="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
@@ -130,10 +130,10 @@ export default function GenAiEvaluator() {
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-50/50">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto lg:overflow-hidden bg-slate-50/50">
         
         {/* Left Side: Input Controls */}
-        <div className="lg:w-[55%] flex flex-col relative h-full">
+        <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full">
           
           <div className="flex-1 border border-slate-200 rounded-xl bg-white shadow-sm p-6 flex flex-col">
             <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6">Evaluation Payloads</h3>
@@ -190,7 +190,7 @@ export default function GenAiEvaluator() {
         </div>
 
         {/* Right Side: Dashboard */}
-        <div className="lg:w-[45%] bg-slate-950 rounded-xl shadow-2xl border border-slate-800 p-6 flex flex-col h-full relative">
+        <div className="w-full lg:w-[45%] bg-slate-950 rounded-xl shadow-2xl border border-slate-800 p-6 flex flex-col shrink-0 lg:h-full relative min-h-[400px]">
           <div className="flex justify-between items-center mb-6 shrink-0 border-b border-slate-800 pb-4">
             <h3 className="text-sm font-bold text-white uppercase tracking-widest bg-teal-500/10 text-teal-400 px-3 py-1 rounded-sm border border-teal-500/20 inline-block">Evaluation Telemetry</h3>
             

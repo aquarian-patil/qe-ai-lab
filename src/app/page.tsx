@@ -31,7 +31,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="m-0 md:m-4 p-4 md:p-0 flex flex-col gap-6 relative pb-8">
+    <div className="flex flex-col gap-6 relative pb-8">
       <div className="flex flex-col lg:flex-row gap-6 lg:h-[400px] shrink-0">
         {/* Trend Graph */}
         <div className="flex-1 glass-panel p-6 flex flex-col h-[300px] lg:h-auto">

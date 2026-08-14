@@ -108,7 +108,7 @@ export default function GenesisPortal() {
                 </div>
               </div>
               <p className="animate-pulse font-medium tracking-widest uppercase">Orchestrating AI Swarm...</p>
-              <div className="mt-8 grid grid-cols-8 gap-2 text-xs text-slate-800">
+              <div className="mt-8 flex flex-wrap justify-center gap-4 md:grid md:grid-cols-4 lg:grid-cols-8 md:gap-2 text-xs text-slate-800">
                 <div className="flex flex-col items-center gap-1"><div className="w-2 h-2 rounded-full bg-blue-500 animate-ping"></div>Product</div>
                 <div className="flex flex-col items-center gap-1"><div className="w-2 h-2 rounded-full bg-blue-500 animate-ping delay-75"></div>Frontend</div>
                 <div className="flex flex-col items-center gap-1"><div className="w-2 h-2 rounded-full bg-violet-500 animate-ping delay-150"></div>Backend</div>

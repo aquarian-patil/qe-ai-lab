@@ -23,13 +23,13 @@ export default function ApprovalsPage() {
   };
 
   return (
-    <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
-      <header className="px-8 py-6 border-b border-slate-300 bg-slate-50">
-        <h2 className="text-2xl font-bold text-slate-900 tracking-wide">Human-in-the-Loop (HITL) Queue</h2>
+    <div className="h-full m-0 md:m-4 flex flex-col relative overflow-hidden glass-panel !border-0 md:!border !rounded-none md:!rounded-2xl">
+      <header className="px-4 md:px-8 py-6 border-b border-slate-300 bg-slate-50 shrink-0">
+        <h2 className="text-xl md:text-2xl font-bold text-slate-900 tracking-wide">Human-in-the-Loop (HITL) Queue</h2>
         <p className="text-sm text-slate-800 mt-1">Review and approve high-risk autonomous AI actions before execution.</p>
       </header>
 
-      <div className="flex-1 overflow-y-auto p-8">
+      <div className="flex-1 overflow-y-auto p-4 md:p-8">
         {loading ? (
           <p className="text-slate-800">Loading queue...</p>
         ) : queue.length === 0 ? (
@@ -40,7 +40,7 @@ export default function ApprovalsPage() {
         ) : (
           <div className="space-y-4">
             {queue.map((req) => (
-              <div key={req.id} className="p-6 rounded-xl border border-slate-300 bg-slate-100 flex justify-between items-center">
+              <div key={req.id} className="p-4 md:p-6 rounded-xl border border-slate-300 bg-slate-100 flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
                 <div>
                   <div className="flex items-center gap-3 mb-2">
                     <span className="text-xs font-mono text-slate-800">{req.id}</span>
@@ -54,11 +54,11 @@ export default function ApprovalsPage() {
                   <p className="text-slate-900 font-medium text-lg">{req.description}</p>
                   <p className="text-xs text-slate-800 mt-2">Requested: {new Date(req.requestedAt).toLocaleString()}</p>
                 </div>
-                <div className="flex gap-3">
-                  <button onClick={() => resolve(req.id, 'REJECTED')} className="px-6 py-2 rounded-lg border border-red-500/50 text-red-400 hover:bg-red-500/10 font-bold transition-all">
+                <div className="flex flex-col sm:flex-row gap-3 w-full xl:w-auto">
+                  <button onClick={() => resolve(req.id, 'REJECTED')} className="flex-1 xl:flex-none px-6 py-2 rounded-lg border border-red-500/50 text-red-400 hover:bg-red-500/10 font-bold transition-all text-center">
                     Reject
                   </button>
-                  <button onClick={() => resolve(req.id, 'APPROVED')} className="px-6 py-2 rounded-lg bg-green-600 hover:bg-green-500 text-white font-bold transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                  <button onClick={() => resolve(req.id, 'APPROVED')} className="flex-1 xl:flex-none px-6 py-2 rounded-lg bg-green-600 hover:bg-green-500 text-white font-bold transition-all shadow-[0_0_15px_rgba(34,197,94,0.3)] text-center">
                     Approve
                   </button>
                 </div>

@@ -62,7 +62,7 @@ export default function Dashboard() {
             <svg className="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
             6-Month Maturity Trend
           </h3>
-          <div className="flex-1 w-full min-h-0">
+          <div className="flex-1 w-full min-h-[200px] lg:min-h-0">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={trendData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
@@ -117,12 +117,13 @@ export default function Dashboard() {
 }
 
 function MaturityCard({ title, score, icon, color, borderColor, textColor }: any) {
+  const scaledScore = score / 20;
   return (
     <div className={`p-6 rounded-2xl border ${borderColor} bg-gradient-to-br ${color} backdrop-blur-xl relative overflow-hidden group hover:scale-[1.02] transition-transform`}>
       <div className="flex justify-between items-start relative z-10">
         <div>
           <p className="text-sm font-bold text-slate-300 mb-1">{title}</p>
-          <p className={`text-3xl font-black ${textColor}`}>{score.toFixed(1)}<span className="text-lg opacity-50">/5</span></p>
+          <p className={`text-3xl font-black ${textColor}`}>{scaledScore.toFixed(1)}<span className="text-lg opacity-50">/5</span></p>
         </div>
         <span className="text-2xl bg-slate-700 p-2 rounded-xl">{icon}</span>
       </div>
@@ -130,7 +131,7 @@ function MaturityCard({ title, score, icon, color, borderColor, textColor }: any
       <div className="mt-6 w-full h-2 bg-slate-900/90 rounded-full overflow-hidden relative z-10">
         <div 
           className={`h-full ${textColor.replace('text-', 'bg-')} transition-all duration-1000 ease-out`}
-          style={{ width: `${(score / 5) * 100}%` }}
+          style={{ width: `${(scaledScore / 5) * 100}%` }}
         />
       </div>
     </div>

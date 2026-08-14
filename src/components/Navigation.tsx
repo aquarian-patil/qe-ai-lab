@@ -1,11 +1,13 @@
 "use client";
 import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import ComingSoon from '@/components/ComingSoon';
 import HitlBadge from '@/components/HitlBadge';
 
 export default function Navigation({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <div className="flex flex-col h-screen overflow-hidden">
@@ -114,28 +116,28 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
         
         <p className="text-[10px] text-slate-300 uppercase tracking-widest font-bold mb-3 mt-2 px-4">Command Center</p>
         <nav className="space-y-1">
-          <NavItem href="/" label="Executive Dashboard" icon="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" onClick={() => setMobileMenuOpen(false)} />
-          <NavItem href="/pipeline" label="CI/CD Pipeline Viewer" icon="M13 10V3L4 14h7v7l9-11h-7z" onClick={() => setMobileMenuOpen(false)} />
+          <NavItem href="/" label="Executive Dashboard" icon="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" onClick={() => setMobileMenuOpen(false)} active={pathname === '/'} />
+          <NavItem href="/pipeline" label="CI/CD Pipeline Viewer" icon="M13 10V3L4 14h7v7l9-11h-7z" onClick={() => setMobileMenuOpen(false)} active={pathname === '/pipeline'} />
         </nav>
         
         <p className="text-xs font-bold text-slate-300 uppercase tracking-widest mt-6 mb-3 px-3">God Mode</p>
-        <Link href="/genesis" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-3 py-2.5 rounded-lg border border-transparent text-slate-300 hover:text-blue-600 hover:bg-slate-200/50 transition-colors group relative overflow-hidden mb-6">
+        <Link href="/genesis" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg border text-sm transition-colors group relative overflow-hidden mb-6 ${pathname === '/genesis' ? 'border-blue-500 bg-blue-500/10 text-blue-400 font-bold' : 'border-transparent text-slate-300 hover:text-blue-600 hover:bg-slate-200/50'}`}>
           <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-          <span className="font-medium text-sm tracking-wide relative z-10">Genesis Engine</span>
+          <span className="font-medium tracking-wide relative z-10">Genesis Engine</span>
         </Link>
 
         <p className="text-xs font-bold text-slate-300 uppercase tracking-widest mt-2 mb-3 px-3">Enterprise Governance</p>
         <nav className="space-y-1 mb-6">
-          <Link href="/approvals" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 rounded-lg transition-colors group cursor-pointer">
+          <Link href="/approvals" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2 text-sm rounded-lg transition-colors group cursor-pointer ${pathname === '/approvals' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
             <span className="text-xl group-hover:scale-110 transition-transform">🛡️</span>
             HITL Approvals
             <HitlBadge />
           </Link>
-          <Link href="/audit" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 rounded-lg transition-colors group cursor-pointer">
+          <Link href="/audit" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2 text-sm rounded-lg transition-colors group cursor-pointer ${pathname === '/audit' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
             <span className="text-xl group-hover:scale-110 transition-transform">📜</span>
             Audit Logs
           </Link>
-          <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-4 py-2 text-sm text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 rounded-lg transition-colors group cursor-pointer">
+          <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2 text-sm rounded-lg transition-colors group cursor-pointer ${pathname === '/integrations' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
             <span className="text-xl group-hover:scale-110 transition-transform">🔌</span>
             Integrations Config
           </Link>
@@ -143,9 +145,9 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
 
         <p className="text-xs font-bold text-slate-300 uppercase tracking-widest mt-2 mb-3 px-3">Testing Sandboxes</p>
         <nav className="space-y-1 mb-6">
-          <NavItem href="/sandboxes/gen-ai" label="GenAI Evaluator" icon="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" onClick={() => setMobileMenuOpen(false)} />
-          <NavItem href="/sandboxes/ai-agent" label="AI Agent Evaluator" icon="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" onClick={() => setMobileMenuOpen(false)} />
-          <NavItem href="/sandboxes/agentic-arena" label="Agentic AI Evaluator" icon="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" onClick={() => setMobileMenuOpen(false)} />
+          <NavItem href="/sandboxes/gen-ai" label="GenAI Evaluator" icon="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" onClick={() => setMobileMenuOpen(false)} active={pathname === '/sandboxes/gen-ai'} />
+          <NavItem href="/sandboxes/ai-agent" label="AI Agent Evaluator" icon="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" onClick={() => setMobileMenuOpen(false)} active={pathname === '/sandboxes/ai-agent'} />
+          <NavItem href="/sandboxes/agentic-arena" label="Agentic AI Evaluator" icon="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" onClick={() => setMobileMenuOpen(false)} active={pathname === '/sandboxes/agentic-arena'} />
         </nav>
         
         <div className="mt-auto pt-6 border-t border-slate-700 flex flex-col gap-4">
@@ -180,9 +182,9 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
   );
 }
 
-function NavItem({ href, label, icon, onClick }: { href: string; label: string; icon: string; onClick?: () => void }) {
+function NavItem({ href, label, icon, onClick, active }: { href: string; label: string; icon: string; onClick?: () => void; active?: boolean }) {
   return (
-    <Link href={href} onClick={onClick} className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 text-slate-300 hover:text-blue-600 hover:bg-slate-200/50`}>
+    <Link href={href} onClick={onClick} className={`flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 ${active ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:text-blue-600 hover:bg-slate-200/50 border border-transparent'}`}>
       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} />
       </svg>

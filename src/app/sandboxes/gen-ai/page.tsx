@@ -130,10 +130,10 @@ export default function GenAiEvaluator() {
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto lg:overflow-hidden bg-slate-950/50">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto lg:overflow-hidden bg-slate-950/50 min-w-0 w-full">
         
         {/* Left Side: Input Controls */}
-        <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full">
+        <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full min-w-0">
           
           <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-6 flex flex-col">
             <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">Evaluation Payloads</h3>
@@ -190,7 +190,7 @@ export default function GenAiEvaluator() {
         </div>
 
         {/* Right Side: Dashboard */}
-        <div className="w-full lg:w-[45%] bg-slate-950 rounded-xl shadow-2xl border border-slate-800 p-6 flex flex-col shrink-0 lg:h-full relative min-h-[400px]">
+        <div className="w-full lg:w-[45%] bg-slate-950 rounded-xl shadow-2xl border border-slate-800 p-6 flex flex-col shrink-0 lg:h-full relative min-h-[400px] min-w-0">
           <div className="flex justify-between items-center mb-6 shrink-0 border-b border-slate-800 pb-4">
             <h3 className="text-sm font-bold text-white uppercase tracking-widest bg-teal-500/10 text-teal-400 px-3 py-1 rounded-sm border border-teal-500/20 inline-block">Evaluation Telemetry</h3>
             

@@ -24,13 +24,13 @@ export default function RootLayout({
       <body className="flex h-screen overflow-hidden antialiased flex-col">
         <Navigation>
           {/* Main Content Area */}
-          <main className="flex-1 p-4 md:p-8 pt-4 md:pt-4 pb-24 md:pb-4 relative z-10 flex flex-col h-full overflow-hidden">
+          <main className="flex-1 p-4 md:p-8 pt-4 md:pt-4 relative z-10 flex flex-col h-full overflow-hidden">
             <div className="flex-1 overflow-y-auto pr-2 md:pr-4">
                {children}
             </div>
             
             {/* Universal Footer */}
-            <footer className="hidden md:flex mt-4 py-3 border-t border-slate-800 flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 pr-2 md:pr-4">
+            <footer className="mt-4 py-3 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400 pr-2 md:pr-4">
                <div className="flex flex-wrap justify-center gap-4">
                  <ComingSoon><span className="hover:text-blue-600 transition-colors cursor-pointer">Privacy Policy</span></ComingSoon>
                  <ComingSoon><span className="hover:text-blue-600 transition-colors cursor-pointer">Security Audits</span></ComingSoon>

@@ -121,23 +121,23 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
         </nav>
         
         <p className="text-xs font-bold text-slate-300 uppercase tracking-widest mt-6 mb-3 px-3">God Mode</p>
-        <Link href="/genesis" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-3 py-2.5 rounded-lg border text-sm transition-colors group relative overflow-hidden mb-6 ${pathname === '/genesis' ? 'border-blue-500 bg-blue-500/10 text-blue-400 font-bold' : 'border-transparent text-slate-300 hover:text-blue-600 hover:bg-slate-200/50'}`}>
+        <Link href="/genesis" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2.5 rounded-xl border text-sm transition-all duration-300 group relative overflow-hidden mb-6 ${pathname === '/genesis' ? 'bg-blue-500/20 text-blue-400 font-bold border-blue-500/30' : 'border-transparent text-slate-300 hover:text-blue-600 hover:bg-slate-200/50'}`}>
           <svg className="w-5 h-5 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
           <span className="font-medium tracking-wide relative z-10">Genesis Engine</span>
         </Link>
 
         <p className="text-xs font-bold text-slate-300 uppercase tracking-widest mt-2 mb-3 px-3">Enterprise Governance</p>
         <nav className="space-y-1 mb-6">
-          <Link href="/approvals" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2 text-sm rounded-lg transition-colors group cursor-pointer ${pathname === '/approvals' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
+          <Link href="/approvals" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2.5 text-sm rounded-xl transition-all duration-300 group cursor-pointer ${pathname === '/approvals' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
             <span className="text-xl group-hover:scale-110 transition-transform">🛡️</span>
             HITL Approvals
             <HitlBadge />
           </Link>
-          <Link href="/audit" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2 text-sm rounded-lg transition-colors group cursor-pointer ${pathname === '/audit' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
+          <Link href="/audit" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2.5 text-sm rounded-xl transition-all duration-300 group cursor-pointer ${pathname === '/audit' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
             <span className="text-xl group-hover:scale-110 transition-transform">📜</span>
             Audit Logs
           </Link>
-          <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2 text-sm rounded-lg transition-colors group cursor-pointer ${pathname === '/integrations' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
+          <Link href="/integrations" onClick={() => setMobileMenuOpen(false)} className={`flex items-center gap-3 px-4 py-2.5 text-sm rounded-xl transition-all duration-300 group cursor-pointer ${pathname === '/integrations' ? 'bg-blue-500/20 text-blue-400 font-bold border border-blue-500/30' : 'text-slate-300 hover:bg-slate-200/50 hover:text-blue-600 border border-transparent'}`}>
             <span className="text-xl group-hover:scale-110 transition-transform">🔌</span>
             Integrations Config
           </Link>

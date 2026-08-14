@@ -1,0 +1,34 @@
+[
+  {
+    "id": "REQ-901",
+    "requestedAt": "2026-08-07T13:36:50.091Z",
+    "pipeline": "SecurityPipeline",
+    "description": "Deploy auto-remediated patch for CVE-2024-1092 to Main Branch",
+    "riskLevel": "HIGH",
+    "status": "APPROVED"
+  },
+  {
+    "id": "REQ-902",
+    "requestedAt": "2026-08-07T12:36:50.091Z",
+    "pipeline": "NfrPipeline",
+    "description": "Execute XL Load Test (20,000 VUs) against Production Environment",
+    "riskLevel": "CRITICAL",
+    "status": "REJECTED"
+  },
+  {
+    "id": "REQ-1786113459288",
+    "requestedAt": "2026-08-07T14:37:39.288Z",
+    "pipeline": "TestPipeline",
+    "description": "Test destructive action",
+    "riskLevel": "HIGH",
+    "status": "APPROVED"
+  },
+  {
+    "id": "REQ-1786113459312",
+    "requestedAt": "2026-08-07T14:37:39.312Z",
+    "pipeline": "TestPipeline2",
+    "description": "Approve me",
+    "riskLevel": "LOW",
+    "status": "APPROVED"
+  }
+]

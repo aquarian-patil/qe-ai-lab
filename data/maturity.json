@@ -1,0 +1,25 @@
+{
+  "codeQuality": {
+    "score": 75,
+    "lintErrors": 12,
+    "coverage": 78
+  },
+  "agenticTesting": {
+    "score": 85,
+    "testsGenerated": 1204,
+    "selfHealSuccessRate": 92
+  },
+  "cicd": {
+    "score": 60,
+    "deployFreqPerDay": 4,
+    "zeroTouchPercentage": 45
+  },
+  "securityNfr": {
+    "score": 70,
+    "vulnerabilities": 3,
+    "loadTestPassRate": 98
+  },
+  "blendedScore": 72.5,
+  "maturityLevel": 3,
+  "levelName": "Autonomous"
+}

@@ -1,5 +1,16 @@
 import { NextResponse } from 'next/server';
 import { AgenticPipeline } from '@/lib/qe-engine/AgenticPipeline';
+import { MaturityScoringService } from '@/lib/qe-engine/MaturityScoringService';
+
+export async function GET() {
+  try {
+    const maturityService = new MaturityScoringService();
+    const metrics = maturityService.getMetrics();
+    return NextResponse.json({ success: true, metrics });
+  } catch (error: any) {
+    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+  }
+}
 
 export async function POST(request: Request) {
   try {

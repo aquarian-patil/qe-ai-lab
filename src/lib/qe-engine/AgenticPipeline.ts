@@ -1,21 +1,20 @@
-import { JiraService } from '../integrations/JiraService';
+import { IntegrationFactory, IIssueTracker } from '../integrations/core/IntegrationFactory';
 import { GoogleGenAI } from '@google/genai';
+import { MaturityScoringService } from './MaturityScoringService';
 import * as fs from 'fs';
 import * as path from 'path';
 
 /**
  * Agentic QE Pipeline Brain
- * 
- * This script runs inside the CI/CD pipeline. It intercepts code changes,
- * uses Google Gemini to write Playwright tests, and orchestrates the
- * Self-Healing loop if tests fail.
  */
 export class AgenticPipeline {
-  private jira: JiraService;
+  private issueTracker: IIssueTracker;
   private ai: GoogleGenAI;
+  private maturity: MaturityScoringService;
 
   constructor() {
-    this.jira = new JiraService();
+    this.issueTracker = IntegrationFactory.getInstance().getIssueTracker();
+    this.maturity = new MaturityScoringService();
     // Initialize Gemini SDK. Expects GEMINI_API_KEY env var
     this.ai = new GoogleGenAI({});
   }
@@ -51,6 +50,7 @@ ${gitDiff}`;
       const filePath = path.join(testDir, `${domain}.spec.ts`);
       fs.writeFileSync(filePath, safeCode);
       console.log(`[AgenticPipeline] Generated tests for ${domain} successfully at ${filePath}`);
+      this.maturity.recordAgenticSuccess();
       return filePath;
     } catch (error) {
       console.error(`[AgenticPipeline] Failed to generate tests:`, error);
@@ -92,13 +92,18 @@ ${existingCode}`;
       
       if (newCode === 'DEFECT' || newCode.includes('DEFECT')) {
         console.log(`[AgenticPipeline] Self-Heal FAILED (Application Defect). Engaging Enterprise Integrations...`);
-        await this.jira.logUnhealableDefect(testPath, errorMessage, domSnapshot);
+        await this.issueTracker.logDefect(
+          `AI Self-Heal Failure: Unhealable Defect in ${testPath}`,
+          errorMessage
+        );
+        this.maturity.recordAgenticFailure();
         return false;
       }
 
       const safeCode = newCode.replace(/```typescript/g, '').replace(/```/g, '').trim();
       fs.writeFileSync(testPath, safeCode);
       console.log(`[AgenticPipeline] Self-Heal SUCCESS: Rewrote locator in ${testPath}`);
+      this.maturity.recordAgenticSuccess();
       return true;
       
     } catch (error) {

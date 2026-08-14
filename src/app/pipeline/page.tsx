@@ -1,95 +1,197 @@
+"use client";
+import { useState, useEffect, useRef } from 'react';
+
+type Stage = 'idle' | 'parallel' | 'nfr' | 'complete';
+
 export default function PipelineViewer() {
+  const [logs, setLogs] = useState<string[]>([]);
+  const [stage, setStage] = useState<Stage>('idle');
+  const terminalRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll terminal
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [logs]);
+
+  const addLog = (log: string) => setLogs(prev => [...prev, log]);
+
+  const triggerPipeline = () => {
+    if (stage !== 'idle' && stage !== 'complete') return;
+    setLogs([]);
+    setStage('parallel');
+    addLog("[SYSTEM] CI/CD Webhook Intercepted: PR #42");
+    addLog("[ORCHESTRATOR] Spawning parallel Swarm Agents...");
+    
+    // Simulate Agentic and Security parallel execution
+    setTimeout(() => addLog("[Agentic Swarm] Spawning 12 concurrent headless browsers..."), 1000);
+    setTimeout(() => addLog("[Security Swarm] Initiating DAST vulnerability scan..."), 1500);
+    setTimeout(() => addLog("[Agentic Swarm] Visual regression passed. Generating Playwright specs."), 3000);
+    setTimeout(() => addLog("[Security Swarm] DAST scan found 0 critical CVEs. Dependencies secure."), 4000);
+    setTimeout(() => addLog("[Agentic Swarm] SUCCESS: All 12/12 Agentic UI flows validated."), 5000);
+    
+    // Transition to NFR
+    setTimeout(() => {
+      setStage('nfr');
+      addLog("[ORCHESTRATOR] Parallel phase complete. Merging execution paths.");
+      addLog("[NFR Swarm] Initiating L-Size Load Test (5000 VUs) across 3 regions...");
+    }, 6000);
+    
+    setTimeout(() => addLog("[NFR Swarm] Real-time metrics: P(95) < 300ms, 0% Error Rate."), 8000);
+    setTimeout(() => addLog("[NFR Swarm] SUCCESS: Load threshold validated."), 10000);
+    
+    // Complete
+    setTimeout(() => {
+      setStage('complete');
+      addLog("[SYSTEM] Pipeline Execution Complete. Validation Passed. Ready for Production.");
+    }, 11000);
+  };
+
+  const getNodeState = (node: 'agentic' | 'security' | 'nfr') => {
+    if (stage === 'idle') return 'waiting';
+    if (node === 'agentic' || node === 'security') {
+      if (stage === 'parallel') return 'running';
+      return 'complete';
+    }
+    if (node === 'nfr') {
+      if (stage === 'parallel') return 'waiting';
+      if (stage === 'nfr') return 'running';
+      return 'complete';
+    }
+    return 'waiting';
+  };
+
+  const renderNode = (id: string, title: string, subtitle: string, state: string, colorGroup: 'blue' | 'violet' | 'rose', posClasses: string) => {
+    const isRunning = state === 'running';
+    const isComplete = state === 'complete';
+    
+    let borderClass = 'border-slate-300';
+    let bgClass = 'bg-white';
+    let dotClass = 'bg-slate-300';
+    let iconColor = '';
+
+    if (colorGroup === 'blue') {
+      if (isRunning) { borderClass = 'border-blue-500/50'; bgClass = 'bg-blue-500/10'; dotClass = 'bg-blue-400 animate-ping'; }
+      if (isComplete) { borderClass = 'border-blue-500'; bgClass = 'bg-blue-500/20'; dotClass = 'bg-blue-400'; iconColor = 'text-blue-400'; }
+    } else if (colorGroup === 'violet') {
+      if (isRunning) { borderClass = 'border-violet-500/50'; bgClass = 'bg-violet-500/10'; dotClass = 'bg-violet-400 animate-ping'; }
+      if (isComplete) { borderClass = 'border-violet-500'; bgClass = 'bg-violet-500/20'; dotClass = 'bg-violet-400'; iconColor = 'text-violet-400'; }
+    } else if (colorGroup === 'rose') {
+      if (isRunning) { borderClass = 'border-rose-500/50'; bgClass = 'bg-rose-500/10'; dotClass = 'bg-rose-400 animate-ping'; }
+      if (isComplete) { borderClass = 'border-rose-500'; bgClass = 'bg-rose-500/20'; dotClass = 'bg-rose-400'; iconColor = 'text-rose-400'; }
+    }
+
+    return (
+      <div className={`absolute w-64 p-4 rounded-xl border ${borderClass} ${bgClass} flex items-center gap-4 transition-all duration-500 z-10 shadow-lg ${posClasses}`}>
+        <div className={`w-3 h-3 rounded-full ${dotClass} shrink-0`}></div>
+        <div className="flex-1 min-w-0">
+          <h4 className={`font-bold text-sm ${isComplete || isRunning ? 'text-slate-900' : 'text-slate-500'}`}>{title}</h4>
+          <p className="text-[10px] text-slate-500 truncate">{subtitle}</p>
+        </div>
+        {isComplete && (
+          <svg className={`w-5 h-5 ${iconColor} shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+        )}
+      </div>
+    );
+  };
+
   return (
-    <div className="h-full flex flex-col">
-      <header className="mb-6">
-        <h2 className="text-2xl font-bold text-white tracking-wide">CI/CD <span className="text-cyan-400">Pipeline</span></h2>
-        <p className="text-sm text-zinc-400 mt-1">Real-time view of the Agentic Engine analyzing git diffs and running tests.</p>
+    <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
+      
+      <header className="px-8 py-6 border-b border-slate-300 flex justify-between items-center bg-slate-50 shrink-0">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-2">
+            <svg className="w-6 h-6 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+            CI/CD Pipeline Viewer
+          </h2>
+          <p className="text-sm text-slate-800 mt-1">Real-time DAG orchestration of the Agentic, Security, and NFR Swarms.</p>
+        </div>
+        <button 
+          onClick={triggerPipeline}
+          disabled={stage === 'parallel' || stage === 'nfr'}
+          className="px-6 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all disabled:opacity-50"
+        >
+          {stage === 'parallel' || stage === 'nfr' ? 'Executing...' : 'Trigger Pipeline'}
+        </button>
       </header>
 
-      <div className="flex-1 glass-panel overflow-hidden flex flex-col">
-        {/* Pipeline Header */}
-        <div className="grid grid-cols-5 gap-4 p-4 border-b border-[var(--panel-border)] bg-black/40 text-xs font-semibold text-zinc-400 uppercase tracking-wider">
-          <div className="col-span-1">Commit / Trigger</div>
-          <div className="col-span-1">Domain</div>
-          <div className="col-span-1">AI Action</div>
-          <div className="col-span-1">Status</div>
-          <div className="col-span-1 text-right">Duration</div>
-        </div>
+      <div className="flex-1 flex overflow-hidden">
+        
+        {/* Left Side: DAG Visualizer */}
+        <div className="w-[60%] p-8 border-r border-slate-300 flex items-center justify-center relative bg-slate-50 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] overflow-hidden">
+          
+          <div className="relative w-[700px] h-[400px]">
+            {/* SVG Connectors */}
+            <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+               {/* Agentic to NFR (Flowing from Left to Right) */}
+               <path 
+                 d="M 296 74 L 350 74 L 350 200 L 404 200" 
+                 fill="none" 
+                 stroke={stage === 'nfr' || stage === 'complete' ? '#3b82f6' : '#cbd5e1'} 
+                 strokeWidth="2" 
+                 className={stage === 'parallel' ? 'animate-pulse text-blue-500' : ''}
+                 strokeDasharray="4"
+               />
+               {/* Security to NFR */}
+               <path 
+                 d="M 296 326 L 350 326 L 350 200 L 404 200" 
+                 fill="none" 
+                 stroke={stage === 'nfr' || stage === 'complete' ? '#3b82f6' : '#cbd5e1'} 
+                 strokeWidth="2" 
+                 className={stage === 'parallel' ? 'animate-pulse text-violet-500' : ''}
+                 strokeDasharray="4"
+               />
+            </svg>
 
-        {/* Pipeline Rows */}
-        <div className="flex-1 overflow-y-auto p-2 space-y-2">
-          
-          <PipelineRow 
-            commit="Update dashboard layout" 
-            hash="a1b2c3d" 
-            domain="ui/dashboard" 
-            action="Generated 2 Playwright Tests" 
-            status="Passed" 
-            time="45s" 
-          />
-          
-          <PipelineRow 
-            commit="Change submit button ID" 
-            hash="f9e8d7c" 
-            domain="ui/product" 
-            action="Self-Healed Locator" 
-            status="Healed" 
-            time="12s" 
-            isWarning 
-          />
-          
-          <PipelineRow 
-            commit="Refactor auth logic" 
-            hash="b5n6m7l" 
-            domain="api/auth" 
-            action="Updated Jest Suite" 
-            status="Passed" 
-            time="30s" 
-          />
-          
-          {/* Active Running Row */}
-          <div className="grid grid-cols-5 gap-4 p-4 rounded-xl border border-cyan-500/30 bg-cyan-500/10 items-center animate-pulse">
-            <div className="col-span-1 flex items-center gap-2">
-              <svg className="w-4 h-4 text-cyan-400 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
-              <div>
-                <p className="text-sm font-medium text-cyan-400">Add payment gateway</p>
-                <p className="text-xs text-cyan-500/70 font-mono">Running (HEAD)</p>
-              </div>
-            </div>
-            <div className="col-span-1 text-sm text-cyan-300">api/checkout</div>
-            <div className="col-span-1 text-sm text-cyan-300">Analyzing git diff...</div>
-            <div className="col-span-1">
-              <span className="px-2 py-1 rounded text-xs font-bold bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">In Progress</span>
-            </div>
-            <div className="col-span-1 text-right text-sm text-cyan-300">04s</div>
+            {/* Nodes */}
+            {renderNode('agentic', 'Agentic UI Pipeline', 'Playwright Generation & Healing', getNodeState('agentic'), 'blue', 'top-10 left-10')}
+            {renderNode('security', 'Security Pipeline', 'DAST/SAST Auto-Remediation', getNodeState('security'), 'violet', 'bottom-10 left-10')}
+            {renderNode('nfr', 'NFR Pipeline', 'T-Shirt k6 Load Generation', getNodeState('nfr'), 'rose', 'top-[166px] right-10')}
           </div>
 
         </div>
-      </div>
-    </div>
-  );
-}
 
-function PipelineRow({ commit, hash, domain, action, status, time, isWarning }: any) {
-  const statusColor = status === 'Passed' ? 'text-green-400 bg-green-500/20 border-green-500/30' : 
-                      status === 'Healed' ? 'text-orange-400 bg-orange-500/20 border-orange-500/30' : 
-                      'text-red-400 bg-red-500/20 border-red-500/30';
+        {/* Right Side: Terminal */}
+        <div className="w-[40%] p-6 bg-slate-950 flex flex-col font-mono text-sm relative">
+          <div className="flex gap-2 mb-4 border-b border-slate-800 pb-3 items-center shrink-0">
+            <div className="w-3 h-3 rounded-full bg-red-500"></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+            <span className="text-xs text-slate-500 ml-4 font-sans tracking-widest uppercase">nexus-orchestrator-tty</span>
+          </div>
+          
+          <div className="flex-1 overflow-y-auto font-mono pr-2" ref={terminalRef}>
+            {logs.length === 0 ? (
+              <p className="text-slate-500">Awaiting pipeline trigger...</p>
+            ) : (
+              logs.map((log, i) => {
+                let colorClass = 'text-slate-300';
+                if (log.includes('SUCCESS') || log.includes('passed') || log.includes('Complete')) colorClass = 'text-green-400 font-bold';
+                else if (log.includes('FAILED')) colorClass = 'text-red-400 font-bold';
+                else if (log.includes('SYSTEM')) colorClass = 'text-blue-400';
+                else if (log.includes('ORCHESTRATOR')) colorClass = 'text-purple-400';
+                else if (log.includes('Agentic Swarm')) colorClass = 'text-cyan-300';
+                else if (log.includes('Security Swarm')) colorClass = 'text-rose-300';
+                else if (log.includes('NFR Swarm')) colorClass = 'text-yellow-300';
 
-  return (
-    <div className={`grid grid-cols-5 gap-4 p-4 rounded-xl border border-[var(--panel-border)] bg-black/20 hover:bg-white/5 transition-colors items-center ${isWarning ? 'border-l-4 border-l-orange-500' : ''}`}>
-      <div className="col-span-1">
-        <p className="text-sm font-medium text-white truncate">{commit}</p>
-        <p className="text-xs text-zinc-500 font-mono">{hash}</p>
+                return (
+                  <div key={i} className="mb-2 flex gap-4 leading-relaxed">
+                    <span className="text-slate-600 shrink-0">{`[14:0${i}:12]`}</span>
+                    <span className={colorClass}>{log}</span>
+                  </div>
+                )
+              })
+            )}
+            {(stage === 'parallel' || stage === 'nfr') && (
+              <div className="flex gap-2 mt-4 items-center">
+                <div className="w-2 h-4 bg-slate-400 animate-pulse"></div>
+              </div>
+            )}
+          </div>
+        </div>
+
       </div>
-      <div className="col-span-1 text-sm text-zinc-400">{domain}</div>
-      <div className="col-span-1 text-sm text-zinc-300 flex items-center gap-2">
-        {isWarning && <svg className="w-4 h-4 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>}
-        {action}
-      </div>
-      <div className="col-span-1">
-        <span className={`px-2 py-1 rounded text-xs font-bold border ${statusColor}`}>{status}</span>
-      </div>
-      <div className="col-span-1 text-right text-sm text-zinc-500">{time}</div>
     </div>
   );
 }

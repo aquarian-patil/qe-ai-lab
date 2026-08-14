@@ -1,0 +1,56 @@
+[
+  {
+    "id": "AUD-1786691568196",
+    "timestamp": "2026-08-14T07:12:48.196Z",
+    "actorId": "USR-1092",
+    "actorName": "System Admin",
+    "action": "HITL APPROVED",
+    "target": "Deploy auto-remediated patch for CVE-2024-1092 to Main Branch",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "AUD-1786691566911",
+    "timestamp": "2026-08-14T07:12:46.911Z",
+    "actorId": "USR-1092",
+    "actorName": "System Admin",
+    "action": "HITL REJECTED",
+    "target": "Execute XL Load Test (20,000 VUs) against Production Environment",
+    "status": "FAILURE"
+  },
+  {
+    "id": "AUD-1786687193127",
+    "timestamp": "2026-08-14T05:59:53.127Z",
+    "actorId": "USR-1092",
+    "actorName": "System Admin",
+    "action": "HITL APPROVED",
+    "target": "Test destructive action",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "AUD-1786113459318",
+    "timestamp": "2026-08-07T14:37:39.318Z",
+    "actorId": "USR-1092",
+    "actorName": "System Admin",
+    "action": "HITL APPROVED",
+    "target": "Approve me",
+    "status": "SUCCESS"
+  },
+  {
+    "id": "AUD-1786113459313",
+    "timestamp": "2026-08-07T14:37:39.313Z",
+    "actorId": "USR-1092",
+    "actorName": "System Admin",
+    "action": "HITL Approval Requested",
+    "target": "Approve me",
+    "status": "PENDING_APPROVAL"
+  },
+  {
+    "id": "AUD-1786113459292",
+    "timestamp": "2026-08-07T14:37:39.292Z",
+    "actorId": "USR-1092",
+    "actorName": "System Admin",
+    "action": "HITL Approval Requested",
+    "target": "Test destructive action",
+    "status": "PENDING_APPROVAL"
+  }
+]

@@ -1,74 +1,220 @@
-'use client';
-import { useState } from 'react';
+"use client";
+import { useState, useRef, useEffect } from 'react';
 
-export default function AgentSimulator() {
-  const [messages, setMessages] = useState([{ role: 'system', content: 'Agent Simulator initialized. Define a tool to evaluate.' }]);
+type TraceEvent = {
+  id: string;
+  type: 'THOUGHT' | 'ACTION' | 'OBSERVATION' | 'FINAL';
+  text: string;
+};
+
+const mockTools = [
+  { id: 'github', name: 'GitHub_API', icon: '🐙' },
+  { id: 'jira', name: 'Jira_Cloud', icon: '🔷' },
+  { id: 'bash', name: 'Bash_Terminal', icon: '⌨️' },
+  { id: 'sql', name: 'SQL_Client', icon: '🗄️' },
+  { id: 'playwright', name: 'Playwright_Runner', icon: '🎭' }
+];
+
+const generateDynamicTrace = (goal: string): Omit<TraceEvent, 'id'>[] => {
+  const lowerGoal = goal.toLowerCase();
+  
+  if (lowerGoal.includes('playwright') || lowerGoal.includes('ui') || lowerGoal.includes('test')) {
+    return [
+      { type: 'THOUGHT', text: `Goal received: "${goal}". I will start by analyzing the Playwright test suite for failures.` },
+      { type: 'ACTION', text: 'Tool Call: Playwright_Runner.executeSuite(tags="@smoke")' },
+      { type: 'OBSERVATION', text: 'Test failed: "Timeout waiting for selector \'.login-btn-legacy\' to be visible".' },
+      { type: 'THOUGHT', text: 'The selector ".login-btn-legacy" is no longer valid. I should check the DOM tree of the login page.' },
+      { type: 'ACTION', text: 'Tool Call: GitHub_API.getFile(path="src/components/Login.tsx")' },
+      { type: 'OBSERVATION', text: 'File contents reveal the button now uses className="btn-primary auth-submit".' },
+      { type: 'THOUGHT', text: 'I found the updated CSS selector. I will now update the Playwright test script to fix the failure.' },
+      { type: 'ACTION', text: 'Tool Call: Bash_Terminal.execute("sed -i s/.login-btn-legacy/.auth-submit/g tests/login.spec.ts")' },
+      { type: 'FINAL', text: 'I have successfully healed the broken UI test by updating the legacy CSS selector.' }
+    ];
+  }
+  
+  if (lowerGoal.includes('sql') || lowerGoal.includes('database') || lowerGoal.includes('data')) {
+    return [
+      { type: 'THOUGHT', text: `Goal received: "${goal}". I need to query the database to accomplish this.` },
+      { type: 'ACTION', text: 'Tool Call: SQL_Client.query("SELECT count(*) FROM users WHERE status=\'active\'")' },
+      { type: 'OBSERVATION', text: 'Result: 14,239' },
+      { type: 'THOUGHT', text: 'I have the active user count. I will format this into a report.' },
+      { type: 'ACTION', text: 'Tool Call: Bash_Terminal.execute("echo \'Active Users: 14,239\' > report.txt")' },
+      { type: 'FINAL', text: 'Database query executed successfully and report generated.' }
+    ];
+  }
+
+  // Generic fallback for any other goal
+  return [
+    { type: 'THOUGHT', text: `Goal received: "${goal}". Analyzing best approach based on available tools...` },
+    { type: 'ACTION', text: 'Tool Call: Bash_Terminal.execute("env | grep NEXUS")' },
+    { type: 'OBSERVATION', text: 'NEXUS_ENV=production' },
+    { type: 'THOUGHT', text: 'Environment confirmed as production. Proceeding with caution. I will check the system logs.' },
+    { type: 'ACTION', text: 'Tool Call: GitHub_API.getRecentCommits(branch="main")' },
+    { type: 'OBSERVATION', text: 'Latest commit: "fix: resolve memory leak in worker node"' },
+    { type: 'THOUGHT', text: 'I have gathered the necessary system context. I will compile the final summary.' },
+    { type: 'FINAL', text: 'Task execution completed successfully. All constraints were respected.' }
+  ];
+};
+
+export default function AiAgentEvaluator() {
+  const [goal, setGoal] = useState('');
+  const [constraints, setConstraints] = useState('');
+  const [activeTools, setActiveTools] = useState<string[]>(['github', 'jira']);
+  const [running, setRunning] = useState(false);
+  const [trace, setTrace] = useState<TraceEvent[]>([]);
+  const terminalRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll terminal
+  useEffect(() => {
+    if (terminalRef.current) {
+      terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    }
+  }, [trace]);
+
+  const toggleTool = (id: string) => {
+    setActiveTools(prev => prev.includes(id) ? prev.filter(t => t !== id) : [...prev, id]);
+  };
+
+  const runSimulation = () => {
+    if (!goal.trim()) return;
+    setRunning(true);
+    setTrace([]);
+    
+    const dynamicTrace = generateDynamicTrace(goal);
+    
+    let step = 0;
+    const interval = setInterval(() => {
+      if (step < dynamicTrace.length) {
+        setTrace(prev => [...prev, { ...dynamicTrace[step], id: Math.random().toString() }]);
+        step++;
+      } else {
+        clearInterval(interval);
+        setRunning(false);
+      }
+    }, 1200); // 1.2s delay between agent actions
+  };
 
   return (
-    <div className="h-full flex flex-col">
-      <header className="mb-6">
-        <h2 className="text-2xl font-bold text-white tracking-wide">AI Agent <span className="text-purple-400">Simulator</span></h2>
-        <p className="text-sm text-zinc-400 mt-1">Evaluate if the AI correctly identifies and triggers external tools.</p>
+    <div className="h-full m-4 flex flex-col relative overflow-hidden glass-panel">
+      <header className="px-8 py-6 border-b border-slate-200 bg-white/50 shrink-0 flex justify-between items-center">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-900 tracking-wide flex items-center gap-3">
+            <svg className="w-6 h-6 text-violet-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" /></svg>
+            AI Agent Evaluator
+          </h2>
+          <p className="text-sm text-slate-500 mt-1">Evaluate autonomous agent trajectories, tool-calling sequences, and DevSecOps logic.</p>
+        </div>
       </header>
+      
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-8 overflow-hidden bg-slate-50/50">
+        
+        {/* Left Side: Environment Setup */}
+        <div className="lg:w-[55%] flex flex-col relative h-full">
+          <div className="flex-1 border border-slate-200 rounded-xl bg-white shadow-sm p-6 flex flex-col">
+            <h3 className="text-sm font-bold text-slate-800 uppercase tracking-widest mb-6">Evaluation Environment</h3>
+            
+            <div className="flex flex-col gap-5 flex-1 overflow-y-auto pr-2 custom-scrollbar">
+              {/* Task/Goal */}
+              <div className="flex flex-col shrink-0">
+                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Agent Goal / Objective</h4>
+                <textarea 
+                  className="w-full bg-slate-50 border border-slate-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-800 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
+                  rows={2}
+                  placeholder="What is the agent supposed to achieve? (e.g., 'Find the bug in this API and create a Jira ticket')"
+                  value={goal}
+                  onChange={(e) => setGoal(e.target.value)}
+                />
+              </div>
 
-      <div className="flex gap-6 flex-1 overflow-hidden pb-4">
-        {/* Tool Definition Panel */}
-        <div className="w-1/3 glass-panel p-6 flex flex-col">
-          <h3 className="text-sm font-semibold text-zinc-200 mb-4 uppercase tracking-wider border-b border-[var(--panel-border)] pb-2">Tool Configuration</h3>
-          
-          <div className="space-y-4">
-            <div>
-              <label className="block text-xs font-medium text-zinc-500 mb-1">Tool Name</label>
-              <input type="text" defaultValue="getWeather" className="w-full bg-black/30 border border-[var(--panel-border)] rounded-lg px-3 py-2 text-sm text-white font-mono" />
+              {/* Tools Selection */}
+              <div className="flex flex-col shrink-0">
+                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Available Tools</h4>
+                <div className="flex flex-wrap gap-2">
+                  {mockTools.map(tool => (
+                    <div 
+                      key={tool.id}
+                      onClick={() => toggleTool(tool.id)}
+                      className={`px-3 py-2 rounded-lg border text-xs font-semibold flex items-center gap-2 cursor-pointer transition-colors select-none
+                        ${activeTools.includes(tool.id) ? 'bg-violet-100 border-violet-500 text-violet-900' : 'bg-white border-slate-200 text-slate-600 hover:border-slate-300'}`}
+                    >
+                      <span>{tool.icon}</span> {tool.name}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Constraints */}
+              <div className="flex flex-col shrink-0">
+                <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-widest mb-2">Agent Constraints (System Prompt)</h4>
+                <textarea 
+                  className="w-full bg-slate-50 border border-slate-200 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-800 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
+                  rows={3}
+                  placeholder="What rules must the agent follow? (e.g., 'Do not merge code directly, only open PRs')"
+                  value={constraints}
+                  onChange={(e) => setConstraints(e.target.value)}
+                />
+              </div>
             </div>
-            <div>
-              <label className="block text-xs font-medium text-zinc-500 mb-1">Description (Seen by AI)</label>
-              <textarea defaultValue="Fetches the current weather for a given city." className="w-full bg-black/30 border border-[var(--panel-border)] rounded-lg p-3 text-sm text-white resize-none h-24" />
-            </div>
-            <div>
-              <label className="block text-xs font-medium text-zinc-500 mb-1">Parameters (JSON Schema)</label>
-              <textarea defaultValue={`{\n  "city": "string"\n}`} className="w-full bg-black/30 border border-[var(--panel-border)] rounded-lg p-3 text-sm text-green-400 font-mono resize-none h-24" />
-            </div>
-            <button className="w-full py-2 rounded-lg bg-zinc-800 text-white text-sm font-medium border border-zinc-700 hover:bg-zinc-700 transition-colors">
-              Update Tool Schema
-            </button>
           </div>
+          
+          <button 
+            onClick={runSimulation}
+            disabled={running || !goal.trim()}
+            className="mt-4 py-4 rounded-xl bg-violet-600 hover:bg-violet-500 text-white font-bold text-sm tracking-wide shadow-[0_4px_14px_0_rgba(139,92,246,0.39)] transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:hover:translate-y-0"
+          >
+            {running ? 'Simulating Trajectory...' : 'Run Agent Evaluation'}
+          </button>
         </div>
 
-        {/* Chat / Evaluation Panel */}
-        <div className="flex-1 glass-panel flex flex-col overflow-hidden relative">
-           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500" />
-           
-           <div className="flex-1 p-6 overflow-y-auto space-y-4">
-             {messages.map((msg, i) => (
-               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                 <div className={`max-w-[80%] rounded-2xl p-4 text-sm ${msg.role === 'user' ? 'bg-purple-600 text-white rounded-br-none' : 'bg-zinc-800/80 text-zinc-200 border border-zinc-700 rounded-bl-none'}`}>
-                   {msg.content}
-                 </div>
-               </div>
-             ))}
-             
-             {/* Mock AI Tool Call */}
-             <div className="flex justify-start">
-               <div className="max-w-[80%] rounded-2xl p-4 text-sm bg-black/50 border border-purple-500/30 text-purple-300 font-mono">
-                 <div className="flex items-center gap-2 mb-2 text-purple-400 font-bold uppercase text-[10px] tracking-wider">
-                   <svg className="w-3 h-3 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0..."></path></svg>
-                   Executing Tool
-                 </div>
-                 Tool: getWeather<br/>
-                 Params: {`{ "city": "London" }`}
-               </div>
-             </div>
-           </div>
-
-           <div className="p-4 border-t border-[var(--panel-border)] bg-black/20">
-             <div className="flex gap-3">
-               <input type="text" placeholder="Send a message to test tool triggering... (e.g. Is it raining in London?)" className="flex-1 bg-black/40 border border-zinc-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500" />
-               <button className="px-6 py-3 rounded-lg bg-purple-600 text-white font-semibold text-sm hover:bg-purple-500 transition-colors">
-                 Send
-               </button>
-             </div>
-           </div>
+        {/* Right Side: Trajectory Terminal */}
+        <div className="lg:w-[45%] border border-slate-800 rounded-xl bg-slate-950 shadow-2xl p-6 flex flex-col relative h-full">
+          <div className="flex gap-2 mb-4 border-b border-slate-800 pb-4 shrink-0">
+            <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
+            <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+            <span className="text-xs text-slate-500 ml-4 tracking-widest font-mono uppercase">Agent_Trajectory_Stream</span>
+          </div>
+          
+          <div ref={terminalRef} className="flex-1 overflow-y-auto font-mono text-[13px] leading-loose pr-2 custom-scrollbar">
+            {trace.length === 0 && !running && (
+              <div className="text-slate-600 italic">Waiting for environment initialization...</div>
+            )}
+            
+            {trace.map((evt) => (
+              <div key={evt.id} className="mb-4 animate-slide-up opacity-90">
+                {evt.type === 'THOUGHT' && (
+                  <div>
+                    <span className="text-fuchsia-400 font-bold mr-2">[{evt.type}]</span>
+                    <span className="text-slate-300 italic">{evt.text}</span>
+                  </div>
+                )}
+                {evt.type === 'ACTION' && (
+                  <div className="bg-blue-950/40 p-2 rounded border border-blue-900/50 mt-1">
+                    <span className="text-blue-400 font-bold mr-2">[{evt.type}]</span>
+                    <span className="text-blue-200 font-medium">{evt.text}</span>
+                  </div>
+                )}
+                {evt.type === 'OBSERVATION' && (
+                  <div className="mt-1">
+                    <span className="text-emerald-400 font-bold mr-2">[{evt.type}]</span>
+                    <span className="text-emerald-100/70">{evt.text}</span>
+                  </div>
+                )}
+                {evt.type === 'FINAL' && (
+                  <div className="mt-4 p-3 bg-violet-900/30 border border-violet-500/30 rounded-lg">
+                    <span className="text-violet-400 font-bold mr-2">[FINAL ANSWER]</span>
+                    <span className="text-white font-medium">{evt.text}</span>
+                  </div>
+                )}
+              </div>
+            ))}
+            
+            {running && (
+              <div className="flex gap-2 mt-2 items-center">
+                <div className="w-2 h-4 bg-violet-400 animate-pulse"></div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

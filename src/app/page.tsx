@@ -48,6 +48,13 @@ export default function Dashboard() {
         </div>
       </header>
 
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 shrink-0">
+        <MaturityCard title="Code Quality" score={data.codeQuality.score} icon="💻" color="from-blue-500/20 to-blue-600/20" borderColor="border-blue-500/30" textColor="text-blue-400" />
+        <MaturityCard title="Agentic Testing" score={data.agenticTesting.score} icon="🤖" color="from-violet-500/20 to-violet-600/20" borderColor="border-violet-500/30" textColor="text-violet-400" />
+        <MaturityCard title="CI/CD Velocity" score={data.cicd.score} icon="🚀" color="from-rose-500/20 to-rose-600/20" borderColor="border-rose-500/30" textColor="text-rose-400" />
+        <MaturityCard title="Security & NFR" score={data.securityNfr.score} icon="🛡️" color="from-orange-500/20 to-orange-600/20" borderColor="border-orange-500/30" textColor="text-orange-400" />
+      </div>
+
       <div className="flex flex-col lg:flex-row gap-6 lg:h-[400px] shrink-0">
         {/* Trend Graph */}
         <div className="flex-1 glass-panel p-6 flex flex-col h-[300px] lg:h-auto">
@@ -90,12 +97,7 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 shrink-0">
-        <MaturityCard title="Code Quality" score={data.codeQuality.score} icon="💻" color="from-blue-500/20 to-blue-600/20" borderColor="border-blue-500/30" textColor="text-blue-400" />
-        <MaturityCard title="Agentic Testing" score={data.agenticTesting.score} icon="🤖" color="from-violet-500/20 to-violet-600/20" borderColor="border-violet-500/30" textColor="text-violet-400" />
-        <MaturityCard title="CI/CD Velocity" score={data.cicd.score} icon="🚀" color="from-rose-500/20 to-rose-600/20" borderColor="border-rose-500/30" textColor="text-rose-400" />
-        <MaturityCard title="Security & NFR" score={data.securityNfr.score} icon="🛡️" color="from-orange-500/20 to-orange-600/20" borderColor="border-orange-500/30" textColor="text-orange-400" />
-      </div>
+
 
       <div className="mt-6 glass-panel p-6 shrink-0">
         <h3 className="text-base md:text-lg font-bold text-white mb-6 flex items-center gap-2">

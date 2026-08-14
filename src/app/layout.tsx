@@ -24,7 +24,7 @@ export default function RootLayout({
       <body className="flex h-screen overflow-hidden antialiased flex-col">
         <Navigation>
           {/* Main Content Area */}
-          <main className="flex-1 p-4 md:p-8 pt-4 md:pt-4 relative z-10 flex flex-col h-full overflow-hidden">
+          <main className="flex-1 p-4 md:p-8 pt-4 md:pt-4 pb-24 md:pb-4 relative z-10 flex flex-col h-full overflow-hidden">
             <div className="flex-1 overflow-y-auto pr-2 md:pr-4">
                {children}
             </div>

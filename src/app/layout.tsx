@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import Navigation from '@/components/Navigation';
 import ComingSoon from '@/components/ComingSoon';
@@ -6,6 +6,12 @@ import ComingSoon from '@/components/ComingSoon';
 export const metadata: Metadata = {
   title: 'Aegis QE',
   description: 'Enterprise Agentic Quality Engineering Framework',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

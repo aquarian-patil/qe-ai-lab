@@ -120,7 +120,7 @@ export default function AiAgentEvaluator() {
                 <textarea 
                   className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
                   rows={2}
-                  placeholder="What is the agent supposed to achieve? (e.g., 'Find the bug in this API and create a Jira ticket')"
+                  placeholder="What is the objective? e.g. Find bug & create Jira ticket"
                   value={goal}
                   onChange={(e) => setGoal(e.target.value)}
                 />
@@ -149,7 +149,7 @@ export default function AiAgentEvaluator() {
                 <textarea 
                   className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
                   rows={3}
-                  placeholder="What rules must the agent follow? (e.g., 'Do not merge code directly, only open PRs')"
+                  placeholder="What are the rules? e.g. Do not merge, open PRs only"
                   value={constraints}
                   onChange={(e) => setConstraints(e.target.value)}
                 />

@@ -114,7 +114,7 @@ export default function AgenticAiEvaluator() {
                 <textarea 
                   className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 transition-all resize-none outline-none"
                   rows={2}
-                  placeholder="What event kicks off the agents? (e.g., 'Playwright nightly pipeline failed on Login step')"
+                  placeholder="Event trigger: e.g. Nightly pipeline failed"
                   value={trigger}
                   onChange={(e) => setTrigger(e.target.value)}
                 />
@@ -143,7 +143,7 @@ export default function AgenticAiEvaluator() {
                 <textarea 
                   className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 transition-all resize-none outline-none"
                   rows={2}
-                  placeholder="What is the final success criteria? (e.g., 'Self-heal the code and verify the fix')"
+                  placeholder="Success criteria: e.g. Self-heal and verify fix"
                   value={objective}
                   onChange={(e) => setObjective(e.target.value)}
                 />

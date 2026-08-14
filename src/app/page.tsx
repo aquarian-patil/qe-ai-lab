@@ -39,8 +39,8 @@ export default function Dashboard() {
             <svg className="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
             6-Month Maturity Trend
           </h3>
-          <div className="flex-1 w-full min-h-[200px] lg:min-h-0">
-            <ResponsiveContainer width="100%" height="100%">
+          <div className="w-full h-[200px] lg:h-full lg:flex-1">
+            <ResponsiveContainer width="100%" height="100%" minHeight={200}>
               <AreaChart data={trendData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorScore" x1="0" y1="0" x2="0" y2="1">

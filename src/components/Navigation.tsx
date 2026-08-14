@@ -29,7 +29,7 @@ export default function Navigation({ children }: { children: React.ReactNode }) 
         <div className="flex items-center gap-4 md:gap-6">
           {/* Hamburger Icon for Mobile */}
           <button 
-            className="md:hidden p-2 text-slate-300 hover:bg-slate-200/50 rounded-lg transition-colors"
+            className="md:hidden p-2 -mr-2 text-slate-300 hover:bg-slate-200/50 rounded-lg transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">

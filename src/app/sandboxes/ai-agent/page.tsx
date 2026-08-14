@@ -144,11 +144,10 @@ export default function AiAgentEvaluator() {
               </div>
 
               {/* Constraints */}
-              <div className="flex flex-col shrink-0">
+              <div className="flex flex-col flex-1 min-h-[100px]">
                 <h4 className="text-[10px] md:text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2">Agent Constraints (System Prompt)</h4>
                 <textarea 
-                  className="w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
-                  rows={3}
+                  className="flex-1 w-full bg-slate-950 border border-slate-700 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] rounded-xl p-4 text-slate-300 text-sm leading-relaxed focus:bg-white focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 transition-all resize-none outline-none"
                   placeholder="What are the rules? e.g. Do not merge, open PRs only"
                   value={constraints}
                   onChange={(e) => setConstraints(e.target.value)}

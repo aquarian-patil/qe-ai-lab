@@ -26,7 +26,9 @@ export default function RootLayout({
           {/* Main Content Area */}
           <main className="flex-1 p-4 md:p-8 pt-4 md:pt-4 relative z-10 flex flex-col h-full overflow-hidden">
             <div className="flex-1 overflow-y-auto custom-scrollbar">
-               {children}
+               <div className="max-w-[1600px] mx-auto w-full h-full">
+                 {children}
+               </div>
             </div>
             
             {/* Universal Footer */}

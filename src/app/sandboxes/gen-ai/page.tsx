@@ -130,7 +130,7 @@ export default function GenAiEvaluator() {
         </div>
       </header>
       
-      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto lg:overflow-hidden bg-slate-950/50 min-w-0 w-full">
+      <div className="flex-1 flex flex-col lg:flex-row gap-6 p-4 md:p-8 overflow-y-auto bg-slate-950/50 min-w-0 w-full">
         
         {/* Left Side: Input Controls */}
         <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full min-w-0">

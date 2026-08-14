@@ -94,8 +94,8 @@ export default function GenAiEvaluator() {
     return (
       <div className="bg-slate-900 border border-slate-800 rounded-lg p-3">
         <div className="flex justify-between items-center mb-2">
-          <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">{label}</span>
-          <span className={`text-sm font-black ${textColor}`}>{score}%</span>
+          <span className="text-[10px] md:text-xs font-bold text-slate-300 uppercase tracking-wider">{label}</span>
+          <span className={`text-xs md:text-sm font-black ${textColor}`}>{score}%</span>
         </div>
         <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
           <div 
@@ -135,12 +135,12 @@ export default function GenAiEvaluator() {
         {/* Left Side: Input Controls */}
         <div className="w-full lg:w-[55%] flex flex-col relative shrink-0 lg:h-full min-w-0">
           
-          <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-6 flex flex-col">
-            <h3 className="text-sm font-bold text-slate-300 uppercase tracking-widest mb-6">Evaluation Payloads</h3>
+          <div className="flex-1 border border-slate-700 rounded-xl bg-slate-900 shadow-sm p-4 md:p-6 flex flex-col">
+            <h3 className="text-xs md:text-sm font-bold text-slate-300 uppercase tracking-widest mb-4 md:mb-6">Evaluation Payloads</h3>
             
             <div className="flex flex-col gap-6 flex-1">
               <div className="flex flex-col shrink-0">
-                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                <h4 className="text-[10px] md:text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
                   Original Prompt (Context)
                 </h4>
@@ -154,7 +154,7 @@ export default function GenAiEvaluator() {
               </div>
 
               <div className="flex flex-col flex-1 relative">
-                <h4 className="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                <h4 className="text-[10px] md:text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
                   AI Response / Payload
                 </h4>
@@ -170,7 +170,7 @@ export default function GenAiEvaluator() {
                   {input.length === 0 && (
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 pointer-events-none z-0 bg-transparent transition-colors p-4 text-center">
                       <svg className="w-10 h-10 mb-3 text-slate-300 group-hover:text-teal-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" /></svg>
-                      <p className="font-bold text-slate-600 text-sm">Paste AI Response here</p>
+                      <p className="font-bold text-slate-600 text-xs md:text-sm">Paste AI Response here</p>
                       <p className="font-bold text-slate-600 text-sm hidden md:block">Just copy paste it here or upload</p>
                       <p className="text-[10px] md:text-[11px] font-medium text-slate-400 mt-2 uppercase tracking-wide">Supports JSON, Markdown, Screenshots & Docs</p>
                     </div>
@@ -192,7 +192,7 @@ export default function GenAiEvaluator() {
         {/* Right Side: Dashboard */}
         <div className="w-full lg:w-[45%] bg-slate-950 rounded-xl shadow-2xl border border-slate-800 p-6 flex flex-col shrink-0 lg:h-full relative min-h-[400px] min-w-0">
           <div className="flex justify-between items-center mb-6 shrink-0 border-b border-slate-800 pb-4">
-            <h3 className="text-sm font-bold text-white uppercase tracking-widest bg-teal-500/10 text-teal-400 px-3 py-1 rounded-sm border border-teal-500/20 inline-block">Evaluation Telemetry</h3>
+            <h3 className="text-xs md:text-sm font-bold text-white uppercase tracking-widest bg-teal-500/10 text-teal-400 px-3 py-1 rounded-sm border border-teal-500/20 inline-block">Evaluation Telemetry</h3>
             
             {result && (
               <div className="flex items-center gap-2 bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-full">
@@ -240,7 +240,7 @@ export default function GenAiEvaluator() {
                   <span className="text-[10px] text-slate-400 tracking-widest uppercase">Analysis_Log</span>
                 </div>
                 
-                <div className="flex-1 overflow-y-auto text-xs leading-relaxed text-slate-300">
+                <div className="flex-1 overflow-y-auto text-[11px] md:text-xs leading-relaxed text-slate-300">
                   {result!.logs.map((log, i) => (
                     <div key={i} className="mb-2">
                       {log.startsWith('[WARN]') ? (

@@ -153,12 +153,12 @@ export default function PipelineViewer() {
         </div>
 
         {/* Right Side: Terminal */}
-        <div className="w-full xl:w-[40%] min-h-[300px] xl:min-h-0 xl:h-auto p-4 md:p-6 bg-slate-950 flex flex-col font-mono text-sm relative shrink-0 min-w-0">
+        <div className="w-full xl:w-[40%] min-h-[300px] xl:min-h-0 xl:h-auto p-4 md:p-6 bg-slate-950 flex flex-col font-mono text-xs md:text-sm relative shrink-0 min-w-0">
           <div className="flex gap-2 mb-4 border-b border-slate-800 pb-3 items-center shrink-0">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            <span className="text-xs text-slate-400 ml-4 font-sans tracking-widest uppercase">nexus-orchestrator-tty</span>
+            <span className="text-[10px] md:text-xs text-slate-400 ml-4 font-sans tracking-widest uppercase">nexus-orchestrator-tty</span>
           </div>
           
           <div className="flex-1 overflow-y-auto font-mono pr-2" ref={terminalRef}>
